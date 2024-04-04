@@ -1,0 +1,881 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="i_kak_message_ver4Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Attachments">
+          <Key>
+            <PropertyRef Name="AttachmentID" />
+          </Key>
+          <Property Name="AttachmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MessageID" Type="int" />
+          <Property Name="FileName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="FileData" Type="varbinary(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ConversationParticipants">
+          <Key>
+            <PropertyRef Name="ParticipantID" />
+          </Key>
+          <Property Name="ParticipantID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ConversationID" Type="int" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="JoinedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Conversations">
+          <Key>
+            <PropertyRef Name="ConversationID" />
+          </Key>
+          <Property Name="ConversationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ConversationName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ConversationType" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Messages">
+          <Key>
+            <PropertyRef Name="MessageID" />
+          </Key>
+          <Property Name="MessageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SenderID" Type="int" />
+          <Property Name="ConversationID" Type="int" />
+          <Property Name="MessageText" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="SentDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NoteCategories">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NoteCategoryMap">
+          <Key>
+            <PropertyRef Name="MapID" />
+          </Key>
+          <Property Name="MapID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NoteID" Type="int" />
+          <Property Name="CategoryID" Type="int" />
+        </EntityType>
+        <EntityType Name="Notes">
+          <Key>
+            <PropertyRef Name="NoteID" />
+          </Key>
+          <Property Name="NoteID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="NoteText" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Notifications">
+          <Key>
+            <PropertyRef Name="NotificationID" />
+          </Key>
+          <Property Name="NotificationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="NotificationType" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="NotificationText" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="IsRead" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TaskCategories">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TaskCategoryMap">
+          <Key>
+            <PropertyRef Name="MapID" />
+          </Key>
+          <Property Name="MapID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TaskID" Type="int" />
+          <Property Name="CategoryID" Type="int" />
+        </EntityType>
+        <EntityType Name="Tasks">
+          <Key>
+            <PropertyRef Name="TaskID" />
+          </Key>
+          <Property Name="TaskID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AssignedToID" Type="int" />
+          <Property Name="AssignedByID" Type="int" />
+          <Property Name="TaskDescription" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="DueDate" Type="datetime" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="RegistrationDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Attachmen__Messa__48CFD27E">
+          <End Role="Messages" Type="Self.Messages" Multiplicity="0..1" />
+          <End Role="Attachments" Type="Self.Attachments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Messages">
+              <PropertyRef Name="MessageID" />
+            </Principal>
+            <Dependent Role="Attachments">
+              <PropertyRef Name="MessageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Conversat__Conve__3F466844">
+          <End Role="Conversations" Type="Self.Conversations" Multiplicity="0..1" />
+          <End Role="ConversationParticipants" Type="Self.ConversationParticipants" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Conversations">
+              <PropertyRef Name="ConversationID" />
+            </Principal>
+            <Dependent Role="ConversationParticipants">
+              <PropertyRef Name="ConversationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Conversat__UserI__403A8C7D">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="ConversationParticipants" Type="Self.ConversationParticipants" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ConversationParticipants">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Messages__Conver__44FF419A">
+          <End Role="Conversations" Type="Self.Conversations" Multiplicity="0..1" />
+          <End Role="Messages" Type="Self.Messages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Conversations">
+              <PropertyRef Name="ConversationID" />
+            </Principal>
+            <Dependent Role="Messages">
+              <PropertyRef Name="ConversationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Messages__Sender__440B1D61">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Messages" Type="Self.Messages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Messages">
+              <PropertyRef Name="SenderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NoteCateg__Categ__5FB337D6">
+          <End Role="NoteCategories" Type="Self.NoteCategories" Multiplicity="0..1" />
+          <End Role="NoteCategoryMap" Type="Self.NoteCategoryMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NoteCategories">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="NoteCategoryMap">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NoteCateg__NoteI__5EBF139D">
+          <End Role="Notes" Type="Self.Notes" Multiplicity="0..1" />
+          <End Role="NoteCategoryMap" Type="Self.NoteCategoryMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Notes">
+              <PropertyRef Name="NoteID" />
+            </Principal>
+            <Dependent Role="NoteCategoryMap">
+              <PropertyRef Name="NoteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Notes__UserID__5812160E">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Notes" Type="Self.Notes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Notes">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Notificat__UserI__628FA481">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Notifications" Type="Self.Notifications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Notifications">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TaskCateg__Categ__5535A963">
+          <End Role="TaskCategories" Type="Self.TaskCategories" Multiplicity="0..1" />
+          <End Role="TaskCategoryMap" Type="Self.TaskCategoryMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaskCategories">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="TaskCategoryMap">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TaskCateg__TaskI__5441852A">
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="0..1" />
+          <End Role="TaskCategoryMap" Type="Self.TaskCategoryMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tasks">
+              <PropertyRef Name="TaskID" />
+            </Principal>
+            <Dependent Role="TaskCategoryMap">
+              <PropertyRef Name="TaskID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tasks__AssignedB__4CA06362">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="AssignedByID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tasks__AssignedT__4BAC3F29">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="AssignedToID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="i_kak_message_ver4ModelStoreContainer">
+          <EntitySet Name="Attachments" EntityType="Self.Attachments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ConversationParticipants" EntityType="Self.ConversationParticipants" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Conversations" EntityType="Self.Conversations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Messages" EntityType="Self.Messages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NoteCategories" EntityType="Self.NoteCategories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NoteCategoryMap" EntityType="Self.NoteCategoryMap" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Notes" EntityType="Self.Notes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Notifications" EntityType="Self.Notifications" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TaskCategories" EntityType="Self.TaskCategories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TaskCategoryMap" EntityType="Self.TaskCategoryMap" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tasks" EntityType="Self.Tasks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Attachmen__Messa__48CFD27E" Association="Self.FK__Attachmen__Messa__48CFD27E">
+            <End Role="Messages" EntitySet="Messages" />
+            <End Role="Attachments" EntitySet="Attachments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Conversat__Conve__3F466844" Association="Self.FK__Conversat__Conve__3F466844">
+            <End Role="Conversations" EntitySet="Conversations" />
+            <End Role="ConversationParticipants" EntitySet="ConversationParticipants" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Conversat__UserI__403A8C7D" Association="Self.FK__Conversat__UserI__403A8C7D">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ConversationParticipants" EntitySet="ConversationParticipants" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Messages__Conver__44FF419A" Association="Self.FK__Messages__Conver__44FF419A">
+            <End Role="Conversations" EntitySet="Conversations" />
+            <End Role="Messages" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Messages__Sender__440B1D61" Association="Self.FK__Messages__Sender__440B1D61">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Messages" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NoteCateg__Categ__5FB337D6" Association="Self.FK__NoteCateg__Categ__5FB337D6">
+            <End Role="NoteCategories" EntitySet="NoteCategories" />
+            <End Role="NoteCategoryMap" EntitySet="NoteCategoryMap" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NoteCateg__NoteI__5EBF139D" Association="Self.FK__NoteCateg__NoteI__5EBF139D">
+            <End Role="Notes" EntitySet="Notes" />
+            <End Role="NoteCategoryMap" EntitySet="NoteCategoryMap" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Notes__UserID__5812160E" Association="Self.FK__Notes__UserID__5812160E">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Notes" EntitySet="Notes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Notificat__UserI__628FA481" Association="Self.FK__Notificat__UserI__628FA481">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Notifications" EntitySet="Notifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TaskCateg__Categ__5535A963" Association="Self.FK__TaskCateg__Categ__5535A963">
+            <End Role="TaskCategories" EntitySet="TaskCategories" />
+            <End Role="TaskCategoryMap" EntitySet="TaskCategoryMap" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TaskCateg__TaskI__5441852A" Association="Self.FK__TaskCateg__TaskI__5441852A">
+            <End Role="Tasks" EntitySet="Tasks" />
+            <End Role="TaskCategoryMap" EntitySet="TaskCategoryMap" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tasks__AssignedB__4CA06362" Association="Self.FK__Tasks__AssignedB__4CA06362">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Tasks" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tasks__AssignedT__4BAC3F29" Association="Self.FK__Tasks__AssignedT__4BAC3F29">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Tasks" EntitySet="Tasks" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="i_kak_message_ver4Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Attachment">
+          <Key>
+            <PropertyRef Name="AttachmentID" />
+          </Key>
+          <Property Name="AttachmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MessageID" Type="Int32" />
+          <Property Name="FileName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FileData" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <NavigationProperty Name="Message" Relationship="Self.FK__Attachmen__Messa__48CFD27E" FromRole="Attachments" ToRole="Messages" />
+        </EntityType>
+        <EntityType Name="ConversationParticipant">
+          <Key>
+            <PropertyRef Name="ParticipantID" />
+          </Key>
+          <Property Name="ParticipantID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ConversationID" Type="Int32" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="JoinedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Conversation" Relationship="Self.FK__Conversat__Conve__3F466844" FromRole="ConversationParticipants" ToRole="Conversations" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Conversat__UserI__403A8C7D" FromRole="ConversationParticipants" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Conversation">
+          <Key>
+            <PropertyRef Name="ConversationID" />
+          </Key>
+          <Property Name="ConversationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ConversationName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ConversationType" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ConversationParticipants" Relationship="Self.FK__Conversat__Conve__3F466844" FromRole="Conversations" ToRole="ConversationParticipants" />
+          <NavigationProperty Name="Messages" Relationship="Self.FK__Messages__Conver__44FF419A" FromRole="Conversations" ToRole="Messages" />
+        </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="MessageID" />
+          </Key>
+          <Property Name="MessageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SenderID" Type="Int32" />
+          <Property Name="ConversationID" Type="Int32" />
+          <Property Name="MessageText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SentDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Attachments" Relationship="Self.FK__Attachmen__Messa__48CFD27E" FromRole="Messages" ToRole="Attachments" />
+          <NavigationProperty Name="Conversation" Relationship="Self.FK__Messages__Conver__44FF419A" FromRole="Messages" ToRole="Conversations" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Messages__Sender__440B1D61" FromRole="Messages" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="NoteCategory">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="NoteCategoryMaps" Relationship="Self.FK__NoteCateg__Categ__5FB337D6" FromRole="NoteCategories" ToRole="NoteCategoryMap" />
+        </EntityType>
+        <EntityType Name="NoteCategoryMap">
+          <Key>
+            <PropertyRef Name="MapID" />
+          </Key>
+          <Property Name="MapID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NoteID" Type="Int32" />
+          <Property Name="CategoryID" Type="Int32" />
+          <NavigationProperty Name="NoteCategory" Relationship="Self.FK__NoteCateg__Categ__5FB337D6" FromRole="NoteCategoryMap" ToRole="NoteCategories" />
+          <NavigationProperty Name="Note" Relationship="Self.FK__NoteCateg__NoteI__5EBF139D" FromRole="NoteCategoryMap" ToRole="Notes" />
+        </EntityType>
+        <EntityType Name="Note">
+          <Key>
+            <PropertyRef Name="NoteID" />
+          </Key>
+          <Property Name="NoteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="NoteText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="NoteCategoryMaps" Relationship="Self.FK__NoteCateg__NoteI__5EBF139D" FromRole="Notes" ToRole="NoteCategoryMap" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Notes__UserID__5812160E" FromRole="Notes" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Notification">
+          <Key>
+            <PropertyRef Name="NotificationID" />
+          </Key>
+          <Property Name="NotificationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="NotificationType" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="NotificationText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsRead" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Notificat__UserI__628FA481" FromRole="Notifications" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TaskCategory">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="TaskCategoryMaps" Relationship="Self.FK__TaskCateg__Categ__5535A963" FromRole="TaskCategories" ToRole="TaskCategoryMap" />
+        </EntityType>
+        <EntityType Name="TaskCategoryMap">
+          <Key>
+            <PropertyRef Name="MapID" />
+          </Key>
+          <Property Name="MapID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TaskID" Type="Int32" />
+          <Property Name="CategoryID" Type="Int32" />
+          <NavigationProperty Name="TaskCategory" Relationship="Self.FK__TaskCateg__Categ__5535A963" FromRole="TaskCategoryMap" ToRole="TaskCategories" />
+          <NavigationProperty Name="Task" Relationship="Self.FK__TaskCateg__TaskI__5441852A" FromRole="TaskCategoryMap" ToRole="Tasks" />
+        </EntityType>
+        <EntityType Name="Task">
+          <Key>
+            <PropertyRef Name="TaskID" />
+          </Key>
+          <Property Name="TaskID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AssignedToID" Type="Int32" />
+          <Property Name="AssignedByID" Type="Int32" />
+          <Property Name="TaskDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DueDate" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="TaskCategoryMaps" Relationship="Self.FK__TaskCateg__TaskI__5441852A" FromRole="Tasks" ToRole="TaskCategoryMap" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Tasks__AssignedB__4CA06362" FromRole="Tasks" ToRole="Users" />
+          <NavigationProperty Name="User1" Relationship="Self.FK__Tasks__AssignedT__4BAC3F29" FromRole="Tasks" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RegistrationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="ConversationParticipants" Relationship="Self.FK__Conversat__UserI__403A8C7D" FromRole="Users" ToRole="ConversationParticipants" />
+          <NavigationProperty Name="Messages" Relationship="Self.FK__Messages__Sender__440B1D61" FromRole="Users" ToRole="Messages" />
+          <NavigationProperty Name="Notes" Relationship="Self.FK__Notes__UserID__5812160E" FromRole="Users" ToRole="Notes" />
+          <NavigationProperty Name="Notifications" Relationship="Self.FK__Notificat__UserI__628FA481" FromRole="Users" ToRole="Notifications" />
+          <NavigationProperty Name="Tasks" Relationship="Self.FK__Tasks__AssignedB__4CA06362" FromRole="Users" ToRole="Tasks" />
+          <NavigationProperty Name="Tasks1" Relationship="Self.FK__Tasks__AssignedT__4BAC3F29" FromRole="Users" ToRole="Tasks" />
+        </EntityType>
+        <Association Name="FK__Attachmen__Messa__48CFD27E">
+          <End Role="Messages" Type="Self.Message" Multiplicity="0..1" />
+          <End Role="Attachments" Type="Self.Attachment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Messages">
+              <PropertyRef Name="MessageID" />
+            </Principal>
+            <Dependent Role="Attachments">
+              <PropertyRef Name="MessageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Conversat__Conve__3F466844">
+          <End Role="Conversations" Type="Self.Conversation" Multiplicity="0..1" />
+          <End Role="ConversationParticipants" Type="Self.ConversationParticipant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Conversations">
+              <PropertyRef Name="ConversationID" />
+            </Principal>
+            <Dependent Role="ConversationParticipants">
+              <PropertyRef Name="ConversationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Conversat__UserI__403A8C7D">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="ConversationParticipants" Type="Self.ConversationParticipant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ConversationParticipants">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Messages__Conver__44FF419A">
+          <End Role="Conversations" Type="Self.Conversation" Multiplicity="0..1" />
+          <End Role="Messages" Type="Self.Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Conversations">
+              <PropertyRef Name="ConversationID" />
+            </Principal>
+            <Dependent Role="Messages">
+              <PropertyRef Name="ConversationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Messages__Sender__440B1D61">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Messages" Type="Self.Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Messages">
+              <PropertyRef Name="SenderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NoteCateg__Categ__5FB337D6">
+          <End Role="NoteCategories" Type="Self.NoteCategory" Multiplicity="0..1" />
+          <End Role="NoteCategoryMap" Type="Self.NoteCategoryMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NoteCategories">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="NoteCategoryMap">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NoteCateg__NoteI__5EBF139D">
+          <End Role="Notes" Type="Self.Note" Multiplicity="0..1" />
+          <End Role="NoteCategoryMap" Type="Self.NoteCategoryMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Notes">
+              <PropertyRef Name="NoteID" />
+            </Principal>
+            <Dependent Role="NoteCategoryMap">
+              <PropertyRef Name="NoteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Notes__UserID__5812160E">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Notes" Type="Self.Note" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Notes">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Notificat__UserI__628FA481">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Notifications" Type="Self.Notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Notifications">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TaskCateg__Categ__5535A963">
+          <End Role="TaskCategories" Type="Self.TaskCategory" Multiplicity="0..1" />
+          <End Role="TaskCategoryMap" Type="Self.TaskCategoryMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaskCategories">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="TaskCategoryMap">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TaskCateg__TaskI__5441852A">
+          <End Role="Tasks" Type="Self.Task" Multiplicity="0..1" />
+          <End Role="TaskCategoryMap" Type="Self.TaskCategoryMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tasks">
+              <PropertyRef Name="TaskID" />
+            </Principal>
+            <Dependent Role="TaskCategoryMap">
+              <PropertyRef Name="TaskID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tasks__AssignedB__4CA06362">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Tasks" Type="Self.Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="AssignedByID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tasks__AssignedT__4BAC3F29">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Tasks" Type="Self.Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="AssignedToID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="i_kak_message_ver4Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Attachments" EntityType="Self.Attachment" />
+          <EntitySet Name="ConversationParticipants" EntityType="Self.ConversationParticipant" />
+          <EntitySet Name="Conversations" EntityType="Self.Conversation" />
+          <EntitySet Name="Messages" EntityType="Self.Message" />
+          <EntitySet Name="NoteCategories" EntityType="Self.NoteCategory" />
+          <EntitySet Name="NoteCategoryMaps" EntityType="Self.NoteCategoryMap" />
+          <EntitySet Name="Notes" EntityType="Self.Note" />
+          <EntitySet Name="Notifications" EntityType="Self.Notification" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="TaskCategories" EntityType="Self.TaskCategory" />
+          <EntitySet Name="TaskCategoryMaps" EntityType="Self.TaskCategoryMap" />
+          <EntitySet Name="Tasks" EntityType="Self.Task" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK__Attachmen__Messa__48CFD27E" Association="Self.FK__Attachmen__Messa__48CFD27E">
+            <End Role="Messages" EntitySet="Messages" />
+            <End Role="Attachments" EntitySet="Attachments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Conversat__Conve__3F466844" Association="Self.FK__Conversat__Conve__3F466844">
+            <End Role="Conversations" EntitySet="Conversations" />
+            <End Role="ConversationParticipants" EntitySet="ConversationParticipants" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Conversat__UserI__403A8C7D" Association="Self.FK__Conversat__UserI__403A8C7D">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ConversationParticipants" EntitySet="ConversationParticipants" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Messages__Conver__44FF419A" Association="Self.FK__Messages__Conver__44FF419A">
+            <End Role="Conversations" EntitySet="Conversations" />
+            <End Role="Messages" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Messages__Sender__440B1D61" Association="Self.FK__Messages__Sender__440B1D61">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Messages" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NoteCateg__Categ__5FB337D6" Association="Self.FK__NoteCateg__Categ__5FB337D6">
+            <End Role="NoteCategories" EntitySet="NoteCategories" />
+            <End Role="NoteCategoryMap" EntitySet="NoteCategoryMaps" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NoteCateg__NoteI__5EBF139D" Association="Self.FK__NoteCateg__NoteI__5EBF139D">
+            <End Role="Notes" EntitySet="Notes" />
+            <End Role="NoteCategoryMap" EntitySet="NoteCategoryMaps" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Notes__UserID__5812160E" Association="Self.FK__Notes__UserID__5812160E">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Notes" EntitySet="Notes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Notificat__UserI__628FA481" Association="Self.FK__Notificat__UserI__628FA481">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Notifications" EntitySet="Notifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TaskCateg__Categ__5535A963" Association="Self.FK__TaskCateg__Categ__5535A963">
+            <End Role="TaskCategories" EntitySet="TaskCategories" />
+            <End Role="TaskCategoryMap" EntitySet="TaskCategoryMaps" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TaskCateg__TaskI__5441852A" Association="Self.FK__TaskCateg__TaskI__5441852A">
+            <End Role="Tasks" EntitySet="Tasks" />
+            <End Role="TaskCategoryMap" EntitySet="TaskCategoryMaps" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tasks__AssignedB__4CA06362" Association="Self.FK__Tasks__AssignedB__4CA06362">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Tasks" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tasks__AssignedT__4BAC3F29" Association="Self.FK__Tasks__AssignedT__4BAC3F29">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Tasks" EntitySet="Tasks" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="i_kak_message_ver4ModelStoreContainer" CdmEntityContainer="i_kak_message_ver4Entities">
+          <EntitySetMapping Name="Attachments">
+            <EntityTypeMapping TypeName="i_kak_message_ver4Model.Attachment">
+              <MappingFragment StoreEntitySet="Attachments">
+                <ScalarProperty Name="AttachmentID" ColumnName="AttachmentID" />
+                <ScalarProperty Name="MessageID" ColumnName="MessageID" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="FileData" ColumnName="FileData" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ConversationParticipants">
+            <EntityTypeMapping TypeName="i_kak_message_ver4Model.ConversationParticipant">
+              <MappingFragment StoreEntitySet="ConversationParticipants">
+                <ScalarProperty Name="ParticipantID" ColumnName="ParticipantID" />
+                <ScalarProperty Name="ConversationID" ColumnName="ConversationID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="JoinedDate" ColumnName="JoinedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Conversations">
+            <EntityTypeMapping TypeName="i_kak_message_ver4Model.Conversation">
+              <MappingFragment StoreEntitySet="Conversations">
+                <ScalarProperty Name="ConversationID" ColumnName="ConversationID" />
+                <ScalarProperty Name="ConversationName" ColumnName="ConversationName" />
+                <ScalarProperty Name="ConversationType" ColumnName="ConversationType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Messages">
+            <EntityTypeMapping TypeName="i_kak_message_ver4Model.Message">
+              <MappingFragment StoreEntitySet="Messages">
+                <ScalarProperty Name="MessageID" ColumnName="MessageID" />
+                <ScalarProperty Name="SenderID" ColumnName="SenderID" />
+                <ScalarProperty Name="ConversationID" ColumnName="ConversationID" />
+                <ScalarProperty Name="MessageText" ColumnName="MessageText" />
+                <ScalarProperty Name="SentDate" ColumnName="SentDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NoteCategories">
+            <EntityTypeMapping TypeName="i_kak_message_ver4Model.NoteCategory">
+              <MappingFragment StoreEntitySet="NoteCategories">
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NoteCategoryMaps">
+            <EntityTypeMapping TypeName="i_kak_message_ver4Model.NoteCategoryMap">
+              <MappingFragment StoreEntitySet="NoteCategoryMap">
+                <ScalarProperty Name="MapID" ColumnName="MapID" />
+                <ScalarProperty Name="NoteID" ColumnName="NoteID" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Notes">
+            <EntityTypeMapping TypeName="i_kak_message_ver4Model.Note">
+              <MappingFragment StoreEntitySet="Notes">
+                <ScalarProperty Name="NoteID" ColumnName="NoteID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="NoteText" ColumnName="NoteText" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Notifications">
+            <EntityTypeMapping TypeName="i_kak_message_ver4Model.Notification">
+              <MappingFragment StoreEntitySet="Notifications">
+                <ScalarProperty Name="NotificationID" ColumnName="NotificationID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="NotificationType" ColumnName="NotificationType" />
+                <ScalarProperty Name="NotificationText" ColumnName="NotificationText" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsRead" ColumnName="IsRead" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="i_kak_message_ver4Model.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaskCategories">
+            <EntityTypeMapping TypeName="i_kak_message_ver4Model.TaskCategory">
+              <MappingFragment StoreEntitySet="TaskCategories">
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaskCategoryMaps">
+            <EntityTypeMapping TypeName="i_kak_message_ver4Model.TaskCategoryMap">
+              <MappingFragment StoreEntitySet="TaskCategoryMap">
+                <ScalarProperty Name="MapID" ColumnName="MapID" />
+                <ScalarProperty Name="TaskID" ColumnName="TaskID" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tasks">
+            <EntityTypeMapping TypeName="i_kak_message_ver4Model.Task">
+              <MappingFragment StoreEntitySet="Tasks">
+                <ScalarProperty Name="TaskID" ColumnName="TaskID" />
+                <ScalarProperty Name="AssignedToID" ColumnName="AssignedToID" />
+                <ScalarProperty Name="AssignedByID" ColumnName="AssignedByID" />
+                <ScalarProperty Name="TaskDescription" ColumnName="TaskDescription" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="i_kak_message_ver4Model.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

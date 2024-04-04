@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2a933f477db043d49b72b0b318e04ddf" Name="Diagram1">
+        <EntityTypeShape EntityType="i_kak_message_ver4Model.Attachment" Width="1.5" PointX="8.25" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="i_kak_message_ver4Model.ConversationParticipant" Width="1.5" PointX="3" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="i_kak_message_ver4Model.Conversation" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="i_kak_message_ver4Model.Message" Width="1.5" PointX="6" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="i_kak_message_ver4Model.NoteCategory" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="i_kak_message_ver4Model.NoteCategoryMap" Width="1.5" PointX="5.25" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="i_kak_message_ver4Model.Note" Width="1.5" PointX="3" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="i_kak_message_ver4Model.Notification" Width="1.5" PointX="3" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="i_kak_message_ver4Model.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="i_kak_message_ver4Model.TaskCategory" Width="1.5" PointX="3" PointY="21.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="i_kak_message_ver4Model.TaskCategoryMap" Width="1.5" PointX="5.25" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="i_kak_message_ver4Model.Task" Width="1.5" PointX="3" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="i_kak_message_ver4Model.User" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
+        <AssociationConnector Association="i_kak_message_ver4Model.FK__Attachmen__Messa__48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="i_kak_message_ver4Model.FK__Conversat__Conve__3F466844" ManuallyRouted="false" />
+        <AssociationConnector Association="i_kak_message_ver4Model.FK__Conversat__UserI__403A8C7D" ManuallyRouted="false" />
+        <AssociationConnector Association="i_kak_message_ver4Model.FK__Messages__Conver__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="i_kak_message_ver4Model.FK__Messages__Sender__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="i_kak_message_ver4Model.FK__NoteCateg__Categ__5FB337D6" ManuallyRouted="false" />
+        <AssociationConnector Association="i_kak_message_ver4Model.FK__NoteCateg__NoteI__5EBF139D" ManuallyRouted="false" />
+        <AssociationConnector Association="i_kak_message_ver4Model.FK__Notes__UserID__5812160E" ManuallyRouted="false" />
+        <AssociationConnector Association="i_kak_message_ver4Model.FK__Notificat__UserI__628FA481" ManuallyRouted="false" />
+        <AssociationConnector Association="i_kak_message_ver4Model.FK__TaskCateg__Categ__5535A963" ManuallyRouted="false" />
+        <AssociationConnector Association="i_kak_message_ver4Model.FK__TaskCateg__TaskI__5441852A" ManuallyRouted="false" />
+        <AssociationConnector Association="i_kak_message_ver4Model.FK__Tasks__AssignedB__4CA06362" ManuallyRouted="false" />
+        <AssociationConnector Association="i_kak_message_ver4Model.FK__Tasks__AssignedT__4BAC3F29" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
