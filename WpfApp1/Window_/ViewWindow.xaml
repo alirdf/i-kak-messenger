@@ -35,6 +35,17 @@
          Margin="0,5,5,5"
          Foreground="White"/>
             </StackPanel>
+            <StackPanel>
+                <Grid>
+                    <ListView x:Name="lvNotifications" ItemsSource="{Binding Notifications}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding NotificationText}" />
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </StackPanel>
             <ScrollViewer  Grid.Row="1" >
                 <ListView  x:Name="livi2">
                     <ListView.ItemTemplate>
@@ -86,13 +97,13 @@
                     </StackPanel>
                     <StackPanel HorizontalAlignment="Right">
                         <Button Content="▶️"
-    Margin="5"
-    Padding="5,2,5,2"
-    FontSize="20" 
-    Foreground="White" 
-    FontFamily="Arial Black"
-    
-    
+                                x:Name="btEnter"
+                                Click="btEnter_Click"
+                                Margin="5"
+                                Padding="5,2,5,2"
+                                FontSize="20" 
+                                Foreground="White" 
+                                FontFamily="Arial Black"
     />
                     </StackPanel>
 

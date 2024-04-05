@@ -15,17 +15,11 @@ namespace WpfApp1.DB_
     
     public partial class i_kak_message_ver4Entities : DbContext
     {
-        private static DB_.i_kak_message_ver4Entities _context;
         public i_kak_message_ver4Entities()
             : base("name=i_kak_message_ver4Entities")
         {
         }
-    private static DB_.i_kak_message_ver4Entities GetContext()
-        {
-            if (_context == null)
-                _context = new i_kak_message_ver4Entities();
-            return _context;
-        }
+    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();

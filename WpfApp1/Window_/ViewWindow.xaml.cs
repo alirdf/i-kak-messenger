@@ -24,6 +24,23 @@ namespace WpfApp1.Window_
     {
         DB_.i_kak_message_ver4Entities _context = new DB_.i_kak_message_ver4Entities();
         User _user;
+        private Conversation _selectedConversation;
+        public Conversation SelectedConversation
+        {
+            get { return _selectedConversation; }
+            set
+            {
+                _selectedConversation = value;
+                // Дополнительная логика при изменении выбранной беседы
+                LoadMessages(_selectedConversation.ConversationID);
+            }
+        }
+
+        public User CurrentUser
+        {
+            get { return _user; }
+            set { _user = value; }
+        }
         public ViewWindow(User user)
         {
             InitializeComponent();
@@ -80,24 +97,51 @@ namespace WpfApp1.Window_
         private void LoadMessages(int conversationId)
         {
             var messages = _context.Messages.Where(m => m.ConversationID == conversationId).ToList();
-            livi2.ItemsSource = messages;
+            livi.ItemsSource = messages;
         }
         private void SendMessage(object sender, RoutedEventArgs e)
+        {
+        
+        }
+
+
+        private void btEnter_Click(object sender, RoutedEventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(tbMessage.Text))
             {
                 Message newMessage = new Message
                 {
-                    //SenderID = CurrentUser.UserID,
-                    //ConversationID = SelectedConversation.ConversationID,
+
+                    SenderID = CurrentUser.UserID,
+                    ConversationID = SelectedConversation.ConversationID,
                     MessageText = tbMessage.Text,
                     SentDate = DateTime.Now
                 };
 
+                // Создать уведомления для остальных участников беседы
+                var participants = _context.ConversationParticipants
+                    .Where(p => p.ConversationID == SelectedConversation.ConversationID
+                                && p.UserID != CurrentUser.UserID)
+                    .Select(p => p.UserID)
+                    .ToList();
+
+                foreach (int userId in participants)
+                {
+                    Notification notification = new Notification
+                    {
+                        UserID = userId,
+                        NotificationType = "M",
+                        NotificationText = $"Новое сообщение в беседе '{SelectedConversation.ConversationName}'",
+                        CreatedDate = DateTime.Now,
+                        IsRead = false
+                    };
+
+                    _context.Notifications.Add(notification);
+                }
                 _context.Messages.Add(newMessage);
                 _context.SaveChanges();
 
-                //LoadMessages(SelectedConversation.ConversationID);
+                LoadMessages(SelectedConversation.ConversationID);
                 tbMessage.Clear();
             }
         }
