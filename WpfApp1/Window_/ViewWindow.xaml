@@ -12,6 +12,7 @@
             <ColumnDefinition Width="280*"/>
             <ColumnDefinition Width="280*"/>
         </Grid.ColumnDefinitions>
+        <!--беседы и настройка-->
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
@@ -63,6 +64,7 @@
                 </ListView>
             </ScrollViewer>
         </Grid>
+        <!-- сообщения -->
         <Border Grid.Column="1"  BorderBrush="#508bc34a" BorderThickness="2,0,2,0">
             <Grid  Grid.Column="1" >
                 <Grid.RowDefinitions>
@@ -111,7 +113,7 @@
 
             </Grid>
         </Border>
-        
+        <!-- задачи и записи -->
         <Grid Grid.Column="2">
 
             <TabControl >
@@ -136,7 +138,9 @@
                 Padding="1"
                 FontSize="20" 
                 Foreground="White" 
-                FontFamily="Arial Black"/>
+                FontFamily="Arial Black"
+                                    x:Name="btAddTask"
+                                    Click="btAddTask_Click"/>
                         </StackPanel>
                         <StackPanel HorizontalAlignment="Right"
                                     VerticalAlignment="Bottom" Grid.Column="1">

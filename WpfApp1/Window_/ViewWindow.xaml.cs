@@ -145,5 +145,11 @@ namespace WpfApp1.Window_
                 tbMessage.Clear();
             }
         }
+
+        private void btAddTask_Click(object sender, RoutedEventArgs e)
+        {
+            Window_.AddTask addTask = new Window_.AddTask();
+            addTask.ShowDialog();
+        }
     }
 }
