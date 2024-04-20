@@ -8,115 +8,39 @@
         Title="ViewWindow" MinHeight="720" MinWidth="1080" >
     <Grid Background="#f1f3f9">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200*"/>
-            <ColumnDefinition Width="280*"/>
+            <ColumnDefinition Width="480*"/>
             <ColumnDefinition Width="280*"/>
         </Grid.ColumnDefinitions>
-        <!--беседы и настройка-->
-        <Grid Grid.Column="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
 
-            <StackPanel Grid.Row="0" VerticalAlignment="Top" HorizontalAlignment="Left" Orientation="Horizontal">
-                <Menu>
-                    <MenuItem Header="_Меню"
+        <Grid Grid.Row="0">
+            <!--беседы и настройка-->
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!--поиск и что то там-->
+                    <StackPanel Grid.Row="0" VerticalAlignment="Top" HorizontalAlignment="Left" Orientation="Horizontal">
+                        <Menu>
+                            <MenuItem Header="_Меню"
 >
-                        <MenuItem Header="_Профиль"/>
-                        <Separator />
-                        <MenuItem Header="_Настройки" />
-                    </MenuItem>
-                </Menu>
-                <Button Content="Профиль" Foreground="White" Margin="5"/>
-
-                <TextBox HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" Margin="5,5,0,5" Text="" MinWidth="100"/>
-                <Button Content="🔎" 
-         Padding="0" 
-         Margin="0,5,5,5"
-         Foreground="White"/>
-            </StackPanel>
-            <StackPanel>
-                <Grid>
-                    <ListView x:Name="lvNotifications" ItemsSource="{Binding Notifications}">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding NotificationText}" />
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </Grid>
-            </StackPanel>
-            <ScrollViewer  Grid.Row="1" >
-                <ListView  x:Name="livi2">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <Viewbox Margin="5">
-                                    <Image Height="50" Stretch="Uniform" Source="/Image_/yes.png" />
-                                </Viewbox>
-                                <StackPanel Margin="5">
-                                    <TextBlock FontSize="20" Text="{Binding ConversationName}"/>
-                                </StackPanel>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </ScrollViewer>
-        </Grid>
-        <!-- сообщения -->
-        <Border Grid.Column="1"  BorderBrush="#508bc34a" BorderThickness="2,0,2,0">
-            <Grid  Grid.Column="1" >
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition Height="250*"/>
-                    <RowDefinition Height="15*"/>
-                </Grid.RowDefinitions>
-
-                <ScrollViewer   Grid.Row="1" >
-                    <ListView  x:Name="livi" >
-                        <ListView.ItemTemplate>
-                            <DataTemplate >
-
-                                <StackPanel Margin="5">
-                                    <TextBlock FontSize="20"  Text="{Binding MessageText}"/>
-                                    <TextBlock FontSize="10" Text="{Binding SentDate}"/>
-                                </StackPanel>
-
-
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </ScrollViewer>
-
-
-                <Grid  Grid.Row="2">
-                    <StackPanel HorizontalAlignment="Left">
-                        <TextBox  x:Name="tbMessage"
-                            MinWidth="300"
-                         Margin="5"/>
-
-                    </StackPanel>
-                    <StackPanel HorizontalAlignment="Right">
-                        <Button Content="▶️"
-                                x:Name="btEnter"
-                                Click="btEnter_Click"
-                                Margin="5"
-                                Padding="5,2,5,2"
-                                FontSize="20" 
-                                Foreground="White" 
-                                FontFamily="Arial Black"
-    />
+                                <MenuItem Header="_Профиль"/>
+                                <Separator />
+                                <MenuItem Header="_Настройки" />
+                            </MenuItem>
+                        </Menu>
+                        <TextBlock VerticalAlignment="Center" FontSize="15" Margin="5,5,0,5" Text="Поиск"/>
+                        <TextBox HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" Margin="5,5,0,5" Text="" MinWidth="100"/>
                     </StackPanel>
 
-                </Grid>
+
 
             </Grid>
-        </Border>
+       
         <!-- задачи и записи -->
         <Grid Grid.Column="2">
-
             <TabControl >
+                <!--задачи-->
                 <TabItem Header="Задачи">
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -133,30 +57,14 @@
                         </DataGrid>
                         <StackPanel  HorizontalAlignment="Left" 
                                      VerticalAlignment="Bottom">
-                            <Button Content="➕"
-                Margin="5"
-                Padding="1"
-                FontSize="20" 
-                Foreground="White" 
-                FontFamily="Arial Black"
-                                    x:Name="btAddTask"
-                                    Click="btAddTask_Click"/>
+                            <Button Content="➕" Margin="5" Padding="1" FontSize="20" Foreground="White"  FontFamily="Arial Black" x:Name="btAddTaske" Click="btAddTaske_Click"/>
                         </StackPanel>
-                        <StackPanel HorizontalAlignment="Right"
-                                    VerticalAlignment="Bottom" Grid.Column="1">
-                            <Button Content="✔️"
-                 Margin="5"
-             Padding="1"
-         FontSize="20" 
-          Foreground="White" 
-             FontFamily="Arial Black"/>
+                        <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Column="1">
+                            <Button Content="✔️" Margin="5" Padding="1" FontSize="20" Foreground="White" FontFamily="Arial Black"/>
                         </StackPanel>
                     </Grid>
-
-
-
-
                 </TabItem>
+                <!--заметки-->
                 <TabItem Header="Заметки">
                     <Grid>
                         <DataGrid AutoGenerateColumns="False" Background="#f1f3f9" x:Name="data2">
@@ -165,30 +73,15 @@
                                 <DataGridTextColumn  Header="Создано" Binding="{Binding CreatedDate}"/>
                             </DataGrid.Columns>
                         </DataGrid>
-                        <StackPanel  HorizontalAlignment="Left" 
-                            VerticalAlignment="Bottom" 
-                            Grid.Row="1">
-                            <Button Content="➕"
-       Margin="5"
-       Padding="1"
-       FontSize="20" 
-       Foreground="White" 
-       FontFamily="Arial Black"/>
+                        <StackPanel  HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="1">
+                            <Button Content="➕" Margin="5" Padding="1" FontSize="20" Foreground="White" FontFamily="Arial Black" x:Name="btAddNote" Click="btAddNote_Click"/>
                         </StackPanel>
-                        <StackPanel HorizontalAlignment="Right"
-                           VerticalAlignment="Bottom">
-                            <Button Content="✔️"
-        Margin="5"
-    Padding="1"
-FontSize="20" 
- Foreground="White" 
-    FontFamily="Arial Black"/>
+                        <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                            <Button Content="✔️" Margin="5" Padding="1" FontSize="20" Foreground="White" FontFamily="Arial Black"/>
                         </StackPanel>
                     </Grid>
                 </TabItem>
             </TabControl>
-
         </Grid>
-
     </Grid>
 </Window>
