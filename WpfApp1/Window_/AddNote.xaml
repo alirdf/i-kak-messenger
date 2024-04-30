@@ -5,13 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1.Window_"
         mc:Ignorable="d"
-        Title="AddNote" Height="450" Width="800">
+        Title="AddNote" Height="400" Width="400">
     <Grid>
         <StackPanel>
-            <StackPanel>
-                
+
+            <TextBlock Text="Текст :"/>
+            <TextBox MinHeight="300" TextWrapping="Wrap" x:Name="tbTask"></TextBox>
+            
+            
+            <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                <Button x:Name="btEnter" Content="✔️" Margin="5" Padding="5,2,5,2" FontSize="20" Foreground="White" FontFamily="Arial Black"/>
             </StackPanel>
         </StackPanel>
-        
+
     </Grid>
 </Window>

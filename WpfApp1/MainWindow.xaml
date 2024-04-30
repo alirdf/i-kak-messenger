@@ -15,6 +15,8 @@
                         <TextBlock Margin="5" 
                                    Text="Логин"/>
                         <TextBox x:Name="tbAutoLog"
+                                 FontFamily="Arial"
+                                 FontSize="15"
                             Margin="5" 
                                  MinWidth="100" />
                     </StackPanel>
@@ -23,6 +25,8 @@
                                    FontFamily="Arial" 
                                    Text="Пароль"/>
                         <PasswordBox x:Name="tbAutoPass"
+                                     FontFamily="Arial"
+                                     FontSize="15"
                             Margin="5" />
                     </StackPanel>
                     <Button x:Name="btAuto"
@@ -41,6 +45,7 @@
                                    FontFamily="Arial"/>
                         <TextBox x:Name="tbRegLog" 
                             Margin="5"
+                                 FontSize="15"
                                  FontFamily="Arial"/>
                     </StackPanel>
                     <StackPanel>

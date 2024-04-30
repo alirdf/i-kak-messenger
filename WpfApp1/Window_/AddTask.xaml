@@ -7,15 +7,21 @@
         mc:Ignorable="d"
         Title="AddTask" Height="400" Width="400">
     <Grid>
-        <StackPanel>
-        
-         
-            <TextBox MinHeight="300" TextWrapping="Wrap" x:Name="tbTask"></TextBox>
-            <DatePicker MinWidth="100" x:Name="dpTask"></DatePicker>
-            <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom">
-                
-            <Button x:Name="btEnter" Content="✔️" Margin="5" Padding="5,2,5,2" FontSize="20" Foreground="White" FontFamily="Arial Black"/>
-            </StackPanel>
+        <StackPanel >
+
+            <Grid  >
+                <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                    
+                 <TextBlock Text="текст"/>
+                </StackPanel>
+                <StackPanel  Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <TextBlock Text="дедлайн"   VerticalAlignment="Center"/>
+                    <DatePicker MinWidth="100" x:Name="dpTask"></DatePicker>
+                    <Button  x:Name="btEnter" Content="✔️" Margin="5" Padding="5,2,5,2" FontSize="20" Foreground="White" FontFamily="Arial Black"/>
+                </StackPanel>
+            </Grid>
+            
+            <TextBox  FontSize="15" FontFamily="arial" MinHeight="350" TextWrapping="Wrap" x:Name="tbTask"></TextBox>
         </StackPanel>
         
     </Grid>
