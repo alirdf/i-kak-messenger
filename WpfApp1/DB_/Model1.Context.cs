@@ -12,8 +12,9 @@ namespace WpfApp1.DB_
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
+
     public partial class i_kak_message_ver4Entities : DbContext
+
     {
         public i_kak_message_ver4Entities()
             : base("name=i_kak_message_ver4Entities")
@@ -24,6 +25,7 @@ namespace WpfApp1.DB_
         {
             throw new UnintentionalCodeFirstException();
         }
+
     
         public virtual DbSet<Attachment> Attachments { get; set; }
         public virtual DbSet<ConversationParticipant> ConversationParticipants { get; set; }

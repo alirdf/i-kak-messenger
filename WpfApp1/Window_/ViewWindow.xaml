@@ -14,25 +14,25 @@
 
         <Grid Grid.Row="0">
             <!--беседы и настройка-->
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="50"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-                    <!--поиск и что то там-->
-                    <StackPanel Grid.Row="0" VerticalAlignment="Top" HorizontalAlignment="Left" Orientation="Horizontal">
-                        <Menu>
-                            <MenuItem Header="_Меню"
+            <!--поиск и что то там-->
+            <StackPanel Grid.Row="0" VerticalAlignment="Top" HorizontalAlignment="Left" Orientation="Horizontal">
+                <Menu>
+                    <MenuItem Header="_Меню"
 >
-                                <MenuItem Header="_Профиль"/>
-                                <Separator />
-                                <MenuItem Header="_Настройки" />
-                            </MenuItem>
-                        </Menu>
-                        <TextBlock VerticalAlignment="Center" FontSize="15" Margin="5,5,0,5" Text="Поиск"/>
-                        <TextBox HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" Margin="5,5,0,5" Text="" MinWidth="100"/>
-                    </StackPanel>
-            
+                        <MenuItem Header="_Профиль"/>
+                        <Separator />
+                        <MenuItem Header="_Настройки" />
+                    </MenuItem>
+                </Menu>
+                <TextBlock VerticalAlignment="Center" FontSize="15" Margin="5,5,0,5" Text="Поиск"/>
+                <TextBox HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" Margin="5,5,0,5" Text="" MinWidth="100"/>
+            </StackPanel>
+
             <!--сообщения-->
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
@@ -61,6 +61,10 @@
                 </ListView>
             </Grid>
             <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="257*"/>
+                    <ColumnDefinition Width="426*"/>
+                </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="Auto" />
@@ -68,20 +72,22 @@
 
                 <!-- Код из Части 1 -->
 
-                <Grid Grid.Row="1">
+                <Grid Grid.Row="1" Grid.ColumnSpan="2" Margin="5" Grid.RowSpan="2">
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
 
-                    <TextBox x:Name="tbMessage" Grid.Column="0" Margin="5" />
-                    <Button Grid.Column="2" Content="Отправить" Click="SendMessage" Foreground="White" Margin="5" />
-                    <Button Grid.Column="1" Content="Фаил" x:Name="btSendfile" Click="btSendfile_Click" Foreground="White" Margin="5" />
+                    <TextBox x:Name="tbMessage" Grid.Column="1" Margin="5" />
+                    <Button Grid.Column="3" Content="Отправить" Click="SendMessage" Foreground="White" Margin="5" />
+                    <Button Grid.Column="2" Content="Фаил" x:Name="btSendfile"  Foreground="White" Margin="5" />
+                    <Button Grid.Column="0" Content="➕" x:Name="btAddConversation" Click="btAddConversation_Click" Padding="3" Foreground="White" Margin="5" />
                 </Grid>
             </Grid>
         </Grid>
-       
+
         <!-- задачи и записи -->
         <Grid Grid.Column="2">
             <TabControl >

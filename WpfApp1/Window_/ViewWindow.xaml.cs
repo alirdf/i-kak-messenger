@@ -96,7 +96,7 @@ namespace WpfApp1.Window_
             if (!string.IsNullOrWhiteSpace(tbMessage.Text))
             {
                 // Создать новое сообщение
-                Message newMessage = new Message
+                  Message newMessage = new Message
                 {
                     SenderID = CurrentUser.UserID,
                     ConversationID = SelectedConversation.ConversationID,
@@ -139,14 +139,14 @@ namespace WpfApp1.Window_
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+
+
+        
+
+        private void btAddConversation_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void btSendfile_Click(object sender, RoutedEventArgs e)
-        {
-
+            Window_.AddConversation addConversation= new Window_.AddConversation(_user);
+            addConversation.ShowDialog();
         }
     }
 }
