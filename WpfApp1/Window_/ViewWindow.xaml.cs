@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using WpfApp1.DB_;
 
 namespace WpfApp1.Window_
@@ -23,6 +24,67 @@ namespace WpfApp1.Window_
                 _selectedConversation = value;
                 LoadMessages(_selectedConversation.ConversationID);
 
+            }
+        }
+        public ViewWindow(User user)
+        {
+            InitializeComponent();
+            _user = user;
+            
+
+            IsVisibleChanged += ViewWindow_IsVisibleChanged;
+            KeyDown += ViewWindow_KeyDown;
+            // Загрузка задач для текущего пользователя
+            data1.ItemsSource = _context.Tasks
+                .Where(t => t.AssignedToID == user.UserID || t.AssignedByID == user.UserID)
+                .ToList();
+            // Загрузка заметок для текущего пользователя
+            data2.ItemsSource = _context.Notes
+                .Where(n => n.UserID == user.UserID)
+                .ToList();
+
+
+            // Загрузка бесед, где текущий пользователь является участником
+            var conversations = _context.Conversations
+                .Where(c => c.ConversationParticipants.Any(p => p.UserID == user.UserID))
+                .ToList();
+            livi2.ItemsSource = conversations;
+
+
+
+        }
+        private void ViewWindow_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.F5)
+            {
+                RefreshData();
+            }
+        }
+
+        private void RefreshData()
+        {
+            _context.ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
+
+            data1.ItemsSource = _context.Tasks
+                .Where(t => t.AssignedToID == _user.UserID || t.AssignedByID == _user.UserID)
+                .ToList();
+
+            data2.ItemsSource = _context.Notes
+                .Where(n => n.UserID == _user.UserID)
+                .ToList();
+
+            var conversations = _context.Conversations
+                .Where(c => c.ConversationParticipants.Any(p => p.UserID == _user.UserID))
+                .ToList();
+
+            livi2.ItemsSource = conversations;
+        }
+
+        private void ViewWindow_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (IsVisible)
+            {
+                RefreshData();
             }
         }
 
@@ -45,27 +107,6 @@ namespace WpfApp1.Window_
             set { _user = value; }
         }
 
-        public ViewWindow(User user)
-        {
-            InitializeComponent();
-            _user = user;
-            // Загрузка задач для текущего пользователя
-            data1.ItemsSource = _context.Tasks
-                .Where(t => t.AssignedToID == user.UserID || t.AssignedByID == user.UserID)
-                .ToList();
-            // Загрузка заметок для текущего пользователя
-            data2.ItemsSource = _context.Notes
-                .Where(n => n.UserID == user.UserID)
-                .ToList();
-
-
-            // Загрузка бесед, где текущий пользователь является участником
-            var conversations = _context.Conversations
-                .Where(c => c.ConversationParticipants.Any(p => p.UserID == user.UserID))
-                .ToList();
-            livi2.ItemsSource = conversations;
-           
-        }
 
         private void livi2_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -98,7 +139,7 @@ namespace WpfApp1.Window_
             if (!string.IsNullOrWhiteSpace(tbMessage.Text))
             {
                 // Создать новое сообщение
-                  Message newMessage = new Message
+                Message newMessage = new Message
                 {
                     SenderID = CurrentUser.UserID,
                     ConversationID = SelectedConversation.ConversationID,
@@ -141,14 +182,37 @@ namespace WpfApp1.Window_
             }
         }
 
-      
+
 
 
 
         private void btAddConversation_Click(object sender, RoutedEventArgs e)
         {
-            Window_.AddConversation addConversation= new Window_.AddConversation(_user);
+            Window_.AddConversation addConversation = new Window_.AddConversation(_user);
             addConversation.ShowDialog();
         }
+
+        private void Window_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e) //что то не работает
+        
+        {
+            if (Visibility == Visibility.Visible)
+
+                _context.ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
+
+            data1.ItemsSource = _context.Tasks
+                .Where(t => t.AssignedToID == _user.UserID || t.AssignedByID == _user.UserID)
+                .ToList();
+
+            data2.ItemsSource = _context.Notes
+                .Where(n => n.UserID == _user.UserID)
+                .ToList();
+
+            var conversations = _context.Conversations
+                .Where(c => c.ConversationParticipants.Any(p => p.UserID == _user.UserID))
+                .ToList();
+
+            livi2.ItemsSource = conversations;
+        }
+
     }
 }

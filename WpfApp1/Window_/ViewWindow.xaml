@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1.Window_"
         mc:Ignorable="d"
-        Title="ViewWindow" MinHeight="720" MinWidth="1080" >
+        Title="ViewWindow" MinHeight="720" MinWidth="1080" IsVisibleChanged="Window_IsVisibleChanged"  >
+    
     <Grid Background="#f1f3f9">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="480*"/>
