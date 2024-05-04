@@ -26,6 +26,7 @@ namespace WpfApp1.Window_
             }
         }
 
+
         private void btAddNote_Click(object sender, RoutedEventArgs e)
         {
             Window_.AddNote addNote = new Window_.AddNote();
@@ -63,6 +64,7 @@ namespace WpfApp1.Window_
                 .Where(c => c.ConversationParticipants.Any(p => p.UserID == user.UserID))
                 .ToList();
             livi2.ItemsSource = conversations;
+           
         }
 
         private void livi2_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -139,9 +141,9 @@ namespace WpfApp1.Window_
             }
         }
 
+      
 
 
-        
 
         private void btAddConversation_Click(object sender, RoutedEventArgs e)
         {

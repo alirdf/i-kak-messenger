@@ -25,6 +25,7 @@ namespace WpfApp1.Window_
         private i_kak_message_ver4Entities _context = new i_kak_message_ver4Entities();
         private User _currentUser;
 
+
         public AddConversation(User currentUser)
         {
             InitializeComponent();
@@ -84,8 +85,12 @@ namespace WpfApp1.Window_
                     JoinedDate = DateTime.Now
                 };
                 _context.ConversationParticipants.Add(newParticipant);
+
             }
             _context.SaveChanges();
+
+            
+
         }
 
 
