@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="i_kak_message_ver4Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="i_kak_message_ver4Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Attachments">
           <Key>
             <PropertyRef Name="AttachmentID" />
@@ -40,6 +40,7 @@
           <Property Name="ConversationID" Type="int" />
           <Property Name="MessageText" Type="nvarchar(max)" Nullable="false" />
           <Property Name="SentDate" Type="datetime" Nullable="false" />
+          <Property Name="FileContent" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="NoteCategories">
           <Key>
@@ -346,8 +347,7 @@
             <End Role="Tasks" EntitySet="Tasks" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="i_kak_message_ver4Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -394,6 +394,7 @@
           <NavigationProperty Name="Attachments" Relationship="Self.FK__Attachmen__Messa__48CFD27E" FromRole="Messages" ToRole="Attachments" />
           <NavigationProperty Name="Conversation" Relationship="Self.FK__Messages__Conver__44FF419A" FromRole="Messages" ToRole="Conversations" />
           <NavigationProperty Name="User" Relationship="Self.FK__Messages__Sender__440B1D61" FromRole="Messages" ToRole="Users" />
+          <Property Name="FileContent" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="NoteCategory">
           <Key>
@@ -756,6 +757,7 @@
           <EntitySetMapping Name="Messages">
             <EntityTypeMapping TypeName="i_kak_message_ver4Model.Message">
               <MappingFragment StoreEntitySet="Messages">
+                <ScalarProperty Name="FileContent" ColumnName="FileContent" />
                 <ScalarProperty Name="MessageID" ColumnName="MessageID" />
                 <ScalarProperty Name="SenderID" ColumnName="SenderID" />
                 <ScalarProperty Name="ConversationID" ColumnName="ConversationID" />

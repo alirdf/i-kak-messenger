@@ -10,14 +10,17 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="50" />
+            <RowDefinition Height="70" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
+        <StackPanel Orientation="Horizontal" Grid.Row="0">
         <TextBlock Text="Название беседы" Margin="10" />
-        <TextBox x:Name="txtConversationName" Margin="10" Grid.Row="1" />
+        <TextBox MinWidth="100" x:Name="txtConversationName" Margin="10" Grid.Row="1" />
+            
+        </StackPanel>
 
-        <TextBlock Text="Участники" Margin="10" Grid.Row="2" />
+        <TextBlock Text="Участники" Margin="10" Grid.Row="1" VerticalAlignment="Center"/>
         <!--<ListBox x:Name="lbParticipants" Margin="10" Grid.Row="3" SelectionMode="Multiple" />-->
         <ListBox x:Name="lbParticipants" Margin="10" Grid.Row="3" SelectionMode="Multiple" ItemsSource="{Binding Path=Users}">
             <ListBox.ItemTemplate>
@@ -26,7 +29,7 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10" Grid.Row="4">
+        <StackPanel  Orientation="Horizontal" HorizontalAlignment="Right" Margin="10" Grid.Row="1">
             <Button Foreground="White" Content="Отмена" Margin="5" Click="CancelButton_Click" />
             <Button Foreground="White" Content="Создать" Margin="5" Click="CreateButton_Click" />
         </StackPanel>

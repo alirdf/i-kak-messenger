@@ -25,6 +25,7 @@ namespace WpfApp1.DB_
         public Nullable<int> ConversationID { get; set; }
         public string MessageText { get; set; }
         public System.DateTime SentDate { get; set; }
+        public byte[] FileContent { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Attachment> Attachments { get; set; }

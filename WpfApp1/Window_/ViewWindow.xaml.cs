@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -7,8 +8,10 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using WpfApp1.DB_;
+using System.IO;
 
 namespace WpfApp1.Window_
+
 {
     public partial class ViewWindow : Window
     {
@@ -213,6 +216,121 @@ namespace WpfApp1.Window_
 
             livi2.ItemsSource = conversations;
         }
+        private void btSendfile_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == true)
+            {
+                byte[] fileBytes = File.ReadAllBytes(openFileDialog.FileName);
+                string fileName = Path.GetFileName(openFileDialog.FileName);
 
+                Message newMessage = new Message
+                {
+                    SenderID = CurrentUser.UserID,
+                    ConversationID = SelectedConversation.ConversationID,
+                    MessageText = $"[Файл: {fileName}]",
+                    FileContent = fileBytes,
+                    SentDate = DateTime.Now
+                };
+
+                _context.Messages.Add(newMessage);
+                _context.SaveChanges();
+
+                LoadMessages(SelectedConversation.ConversationID);
+            }
+        }
+        private void StackPanel_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            StackPanel stackPanel = sender as StackPanel;
+            if (stackPanel != null)
+            {
+                Message message = stackPanel.DataContext as Message;
+                if (message != null)
+                {
+                    using (var context = new DB_.i_kak_message_ver4Entities())
+                    {
+                        var dbMessage = context.Messages.FirstOrDefault(m => m.MessageID == message.MessageID);
+                        if (dbMessage != null && dbMessage.FileContent != null)
+                        {
+                            SaveFileDialog saveFileDialog = new SaveFileDialog();
+                            saveFileDialog.FileName = dbMessage.MessageText.Replace("[Файл: ", "").Replace("]", "");
+                            if (saveFileDialog.ShowDialog() == true)
+                            {
+                                File.WriteAllBytes(saveFileDialog.FileName, dbMessage.FileContent);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        private void LeaveConversation(int conversationId)
+        {
+            using (var context = new DB_.i_kak_message_ver4Entities())
+            {
+                var participant = context.ConversationParticipants.FirstOrDefault(p => p.ConversationID == conversationId && p.UserID == _user.UserID);
+                if (participant != null)
+                {
+                    context.ConversationParticipants.Remove(participant);
+                    context.SaveChanges();
+                }
+            }
+        }
+
+
+
+        //Поиск с расстоянием Левенштейна
+
+        private void tbSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string searchText = tbSearch.Text.ToLower();
+            var st = _context.Messages.ToList();
+            var filteredItems = st
+            .Where(x => x.MessageText.ToLower().Contains(searchText) ||
+                   LevenshteinDistance(x.MessageText.ToLower(), searchText) <= Math.Max(3, searchText.Length - 3))
+            .ToList();
+
+            livi.ItemsSource = filteredItems;
+
+        }
+       
+      
+        public static int LevenshteinDistance(string s1, string s2)
+        {
+            int[,] d = new int[s1.Length + 1, s2.Length + 1];
+
+            for (int i = 0; i <= s1.Length; i++)
+            {
+                d[i, 0] = i;
+            }
+
+            for (int j = 0; j <= s2.Length; j++)
+            {
+                d[0, j] = j;
+            }
+
+            for (int i = 1; i <= s1.Length; i++)
+            {
+                for (int j = 1; j <= s2.Length; j++)
+                {
+                    int cost = (s1[i - 1] == s2[j - 1]) ? 0 : 1;
+                    d[i, j] = Math.Min(Math.Min(d[i - 1, j] + 1, d[i, j - 1] + 1), d[i - 1, j - 1] + cost);
+                }
+            }
+
+            return d[s1.Length, s2.Length];
+        }
+
+       
+
+        private void btLeaveConversation_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            if (button != null && button.DataContext is Conversation)
+            {
+                Conversation conversation = button.DataContext as Conversation;
+                LeaveConversation(conversation.ConversationID);
+                RefreshData();
+            }
+        }
     }
 }

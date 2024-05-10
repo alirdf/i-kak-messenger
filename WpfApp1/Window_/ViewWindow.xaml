@@ -31,7 +31,7 @@
                     </MenuItem>
                 </Menu>
                 <TextBlock VerticalAlignment="Center" FontSize="15" Margin="5,5,0,5" Text="Поиск"/>
-                <TextBox HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" Margin="5,5,0,5" Text="" MinWidth="100"/>
+                <TextBox TextChanged="tbSearch_TextChanged" x:Name="tbSearch" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" Margin="5,5,0,5" Text="" MinWidth="100"/>
             </StackPanel>
 
             <!--сообщения-->
@@ -44,7 +44,11 @@
                 <ListView x:Name="livi2" Grid.Column="0" SelectionChanged="livi2_SelectionChanged">
                     <ListView.ItemTemplate>
                         <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{Binding ConversationName}" />
+
+                                <Button Content="Выйти" Margin="10,0,0,0" x:Name="btLeaveConversation" Click="btLeaveConversation_Click" />
+                            </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
@@ -52,7 +56,7 @@
                 <ListView x:Name="livi" Grid.Column="1">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Horizontal" MouseLeftButtonUp="StackPanel_MouseLeftButtonUp">
                                 <TextBlock Text="{Binding SenderName}" FontWeight="Bold" />
                                 <TextBlock Text="{Binding Text}" Margin="5,0" />
                                 <TextBlock Text="{Binding SentDate, StringFormat='{}{0:HH:mm}'}" Foreground="Gray" />
@@ -83,7 +87,7 @@
 
                     <TextBox x:Name="tbMessage" Grid.Column="1" Margin="5" />
                     <Button Grid.Column="3" Content="Отправить" Click="SendMessage" Foreground="White" Margin="5" />
-                    <Button Grid.Column="2" Content="Фаил" x:Name="btSendfile"  Foreground="White" Margin="5" />
+                    <Button Grid.Column="2" Content="Фаил" x:Name="btSendfile"  Foreground="White" Margin="5" Click="btSendfile_Click" />
                     <Button Grid.Column="0" Content="➕" x:Name="btAddConversation" Click="btAddConversation_Click" Padding="3" Foreground="White" Margin="5" />
                 </Grid>
             </Grid>
