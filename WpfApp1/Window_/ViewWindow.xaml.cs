@@ -9,6 +9,14 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using WpfApp1.DB_;
 using System.IO;
+using System.Data.Entity;
+using System.Net.Sockets;
+using System.Text;
+using System.Threading;
+
+using System.Net;
+using System.Management;
+
 
 namespace WpfApp1.Window_
 
@@ -28,12 +36,13 @@ namespace WpfApp1.Window_
                 LoadMessages(_selectedConversation.ConversationID);
 
             }
-        }
+        }  // Выбранная беседа
+
         public ViewWindow(User user)
         {
             InitializeComponent();
             _user = user;
-            
+
 
             IsVisibleChanged += ViewWindow_IsVisibleChanged;
             KeyDown += ViewWindow_KeyDown;
@@ -55,14 +64,15 @@ namespace WpfApp1.Window_
 
 
 
-        }
+        }// Конструктор программы -----------------------------------------------------------------------------------------------------------
+
         private void ViewWindow_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.F5)
             {
                 RefreshData();
             }
-        }
+        }// Обработка нажатия клавиши F5 -----------------------------------------------------------------------------------------------------
 
         private void RefreshData()
         {
@@ -81,7 +91,7 @@ namespace WpfApp1.Window_
                 .ToList();
 
             livi2.ItemsSource = conversations;
-        }
+        } // Обновление данных ---------------------------------------------------------------------------------------------------------------
 
         private void ViewWindow_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
@@ -89,26 +99,25 @@ namespace WpfApp1.Window_
             {
                 RefreshData();
             }
-        }
-
+        } // Обработка изменения видимости окна ---------------------------------------------------------------------------------------------
 
         private void btAddNote_Click(object sender, RoutedEventArgs e)
         {
             Window_.AddNote addNote = new Window_.AddNote();
             addNote.ShowDialog();
-        }
+        } // Добавление заметки ---------------------------------------------------------------------------------------------------------------
         private void btAddTaske_Click(object sender, RoutedEventArgs e)
         {
             Window_.AddTask addTask = new Window_.AddTask();
             addTask.ShowDialog();
-        }
-
+        } // Добавление задачи ---------------------------------------------------------------------------------------------------------------
 
         public User CurrentUser
         {
             get { return _user; }
             set { _user = value; }
-        }
+        }// Текущий пользователь ---------------------------------------------------------------------------------------------------------------
+
 
 
         private void livi2_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -121,7 +130,7 @@ namespace WpfApp1.Window_
                     LoadMessages(_selectedConversation.ConversationID);
                 }
             }
-        }
+        }// Выбор беседы ---------------------------------------------------------------------------------------------------------------
 
         private void LoadMessages(int conversationId)
         {
@@ -135,7 +144,7 @@ namespace WpfApp1.Window_
                 })
                 .ToList();
             livi.ItemsSource = messages;
-        }
+        }// Загрузка сообщений ---------------------------------------------------------------------------------------------------------------
 
         private void SendMessage(object sender, RoutedEventArgs e)
         {
@@ -183,8 +192,7 @@ namespace WpfApp1.Window_
                 // Очистить текстовое поле для ввода сообщения
                 tbMessage.Clear();
             }
-        }
-
+        }// Отправка сообщения ---------------------------------------------------------------------------------------------------------------
 
 
 
@@ -193,10 +201,10 @@ namespace WpfApp1.Window_
         {
             Window_.AddConversation addConversation = new Window_.AddConversation(_user);
             addConversation.ShowDialog();
-        }
+        }// Добавление беседы ---------------------------------------------------------------------------------------------------------------
 
         private void Window_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e) //что то не работает
-        
+
         {
             if (Visibility == Visibility.Visible)
 
@@ -215,70 +223,89 @@ namespace WpfApp1.Window_
                 .ToList();
 
             livi2.ItemsSource = conversations;
-        }
+        }// Обновление данных ---------------------------------------------------------------------------------------------------------------
+
+
         private void btSendfile_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            if (openFileDialog.ShowDialog() == true)
+            SendFileWindow sendFileWindow = new SendFileWindow(_user, _context.Users.Where(u => u.UserID != _user.UserID).ToList());
+            if (sendFileWindow.ShowDialog() == true)
             {
-                byte[] fileBytes = File.ReadAllBytes(openFileDialog.FileName);
-                string fileName = Path.GetFileName(openFileDialog.FileName);
+                User selectedReceiver = sendFileWindow.SelectedReceiver;
+                string selectedFilePath = sendFileWindow.SelectedFilePath;
 
-                Message newMessage = new Message
+                if (!string.IsNullOrEmpty(selectedFilePath))
                 {
-                    SenderID = CurrentUser.UserID,
-                    ConversationID = SelectedConversation.ConversationID,
-                    MessageText = $"[Файл: {fileName}]",
-                    FileContent = fileBytes,
-                    SentDate = DateTime.Now
-                };
-
-                _context.Messages.Add(newMessage);
-                _context.SaveChanges();
-
-                LoadMessages(SelectedConversation.ConversationID);
-            }
-        }
-        private void StackPanel_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            StackPanel stackPanel = sender as StackPanel;
-            if (stackPanel != null)
-            {
-                Message message = stackPanel.DataContext as Message;
-                if (message != null)
-                {
-                    using (var context = new DB_.i_kak_message_ver4Entities())
-                    {
-                        var dbMessage = context.Messages.FirstOrDefault(m => m.MessageID == message.MessageID);
-                        if (dbMessage != null && dbMessage.FileContent != null)
-                        {
-                            SaveFileDialog saveFileDialog = new SaveFileDialog();
-                            saveFileDialog.FileName = dbMessage.MessageText.Replace("[Файл: ", "").Replace("]", "");
-                            if (saveFileDialog.ShowDialog() == true)
-                            {
-                                File.WriteAllBytes(saveFileDialog.FileName, dbMessage.FileContent);
-                            }
-                        }
-                    }
+                    // Отправка файла
+                    SendFile(selectedReceiver.Username, selectedFilePath);
+                    MessageBox.Show($"Файл '{Path.GetFileName(selectedFilePath)}' успешно отправлен пользователю {selectedReceiver.Username}.");
                 }
             }
-        }
-        private void LeaveConversation(int conversationId)
+        }// Отправка файла ---------------------------------------------------------------------------------------------------------------
+
+        private void SendFile(string username, string filePath)
         {
-            using (var context = new DB_.i_kak_message_ver4Entities())
+            try
             {
-                var participant = context.ConversationParticipants.FirstOrDefault(p => p.ConversationID == conversationId && p.UserID == _user.UserID);
-                if (participant != null)
+                // Получение информации о компьютере по имени пользователя
+                ManagementScope scope = new ManagementScope($"\\\\{GetComputerNameByUsername(username)}\\root\\cimv2");
+                scope.Connect();
+
+                // Создание объекта для копирования файла
+                ManagementClass fileTransfer = new ManagementClass(scope, new ManagementPath("Win32_DataFile"), null);
+                ManagementBaseObject inParams = fileTransfer.GetMethodParameters("CopyFile");
+
+                // Установка параметров копирования
+                inParams["SourceFile"] = filePath;
+                inParams["DestinationFile"] = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), Path.GetFileName(filePath));
+                inParams["Overwrite"] = true;
+
+                // Выполнение копирования файла
+                ManagementBaseObject outParams = fileTransfer.InvokeMethod("CopyFile", inParams, null);
+
+                // Проверка результата копирования
+                uint returnValue = (uint)outParams.Properties["ReturnValue"].Value;
+                if (returnValue == 0)
                 {
-                    context.ConversationParticipants.Remove(participant);
-                    context.SaveChanges();
+                    MessageBox.Show($"Файл '{Path.GetFileName(filePath)}' успешно отправлен на ПК {username}.");
+                }
+                else
+                {
+                    MessageBox.Show($"Ошибка при отправке файла '{Path.GetFileName(filePath)}' на ПК {username}.");
                 }
             }
-        }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Произошла ошибка при отправке файла: {ex.Message}");
+            }
+        }// Отправка файла ---------------------------------------------------------------------------------------------------------------
+
+        private string GetComputerNameByUsername(string username)
+        {
+            try
+            {
+                // Получение информации о пользователе
+                ManagementObjectSearcher searcher = new ManagementObjectSearcher($"SELECT * FROM Win32_UserAccount WHERE Name = '{username}'");
+                ManagementObjectCollection collection = searcher.Get();
+
+                // Получение имени компьютера
+                foreach (ManagementObject obj in collection)
+                {
+                    return (string)obj["Domain"];
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Произошла ошибка при получении имени компьютера: {ex.Message}");
+            }
+
+            return string.Empty;
+        }// Отправка файла ---------------------------------------------------------------------------------------------------------------
 
 
 
-        //Поиск с расстоянием Левенштейна
+
+
 
         private void tbSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -291,9 +318,9 @@ namespace WpfApp1.Window_
 
             livi.ItemsSource = filteredItems;
 
-        }
-       
-      
+        }// Поиск сообщений ---------------------------------------------------------------------------------------------------------------
+
+
         public static int LevenshteinDistance(string s1, string s2)
         {
             int[,] d = new int[s1.Length + 1, s2.Length + 1];
@@ -318,19 +345,55 @@ namespace WpfApp1.Window_
             }
 
             return d[s1.Length, s2.Length];
-        }
+        }// Поиск сообщений ---------------------------------------------------------------------------------------------------------------
 
-       
 
-        private void btLeaveConversation_Click(object sender, RoutedEventArgs e)
+
+
+
+        private void livi2_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
         {
-            Button button = sender as Button;
-            if (button != null && button.DataContext is Conversation)
+            ListView listView = sender as ListView;
+            if (listView != null)
             {
-                Conversation conversation = button.DataContext as Conversation;
-                LeaveConversation(conversation.ConversationID);
-                RefreshData();
+                Conversation conversation = listView.SelectedItem as Conversation;
+                if (conversation != null)
+                {
+                    ContextMenu contextMenu = listView.ContextMenu;
+                    if (contextMenu != null)
+                    {
+                        contextMenu.DataContext = conversation;
+                        contextMenu.IsOpen = true;
+                    }
+                }
             }
-        }
+        }// Контекстное меню беседы ---------------------------------------------------------------------------------------------------------------
+
+        private void LeaveConversationMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            MenuItem menuItem = sender as MenuItem;
+            if (menuItem != null && menuItem.DataContext is Conversation)
+            {
+                Conversation conversation = menuItem.DataContext as Conversation;
+                if (MessageBox.Show($"Вы уверены, что хотите выйти из беседы '{conversation.ConversationName}'?", "Выход из беседы", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
+                    LeaveConversation(conversation.ConversationID);
+                    RefreshData();
+                }
+            }
+        }// Меню выхода из беседы ---------------------------------------------------------------------------------------------------------------
+        private void LeaveConversation(int conversationId)
+        {
+            using (var context = new DB_.i_kak_message_ver4Entities())
+            {
+                var participant = context.ConversationParticipants.FirstOrDefault(p => p.ConversationID == conversationId && p.UserID == _user.UserID);
+                if (participant != null)
+                {
+                    context.ConversationParticipants.Remove(participant);
+                    context.SaveChanges();
+                }
+            }
+        }// Удаление пользователя из беседы -------------------------------------------------------------------------------------------------------
+
     }
 }

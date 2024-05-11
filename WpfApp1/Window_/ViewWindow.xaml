@@ -41,28 +41,30 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <ListView x:Name="livi2" Grid.Column="0" SelectionChanged="livi2_SelectionChanged">
+                <ListView x:Name="livi2" Grid.Column="0" SelectionChanged="livi2_SelectionChanged" MouseRightButtonUp="livi2_MouseRightButtonUp">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{Binding ConversationName}" />
-
-                                <Button Content="Выйти" Margin="10,0,0,0" x:Name="btLeaveConversation" Click="btLeaveConversation_Click" />
-                            </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
+                    <ListView.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Выйти" Click="LeaveConversationMenuItem_Click" />
+                        </ContextMenu>
+                    </ListView.ContextMenu>
                 </ListView>
 
                 <ListView x:Name="livi" Grid.Column="1">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Orientation="Horizontal" MouseLeftButtonUp="StackPanel_MouseLeftButtonUp">
+                            <StackPanel Orientation="Horizontal" >
                                 <TextBlock Text="{Binding SenderName}" FontWeight="Bold" />
                                 <TextBlock Text="{Binding Text}" Margin="5,0" />
                                 <TextBlock Text="{Binding SentDate, StringFormat='{}{0:HH:mm}'}" Foreground="Gray" />
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
+                  
                 </ListView>
             </Grid>
             <Grid Grid.Row="1">
@@ -75,7 +77,7 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <!-- Код из Части 1 -->
+               
 
                 <Grid Grid.Row="1" Grid.ColumnSpan="2" Margin="5" Grid.RowSpan="2">
                     <Grid.ColumnDefinitions>
