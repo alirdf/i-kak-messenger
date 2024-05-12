@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WpfApp1.DB_;
 
 namespace WpfApp1.Window_
 {
@@ -19,9 +20,40 @@ namespace WpfApp1.Window_
     /// </summary>
     public partial class AddNote : Window
     {
-        public AddNote()
+        private i_kak_message_ver4Entities _context = new i_kak_message_ver4Entities();
+        private User _user;
+
+        public AddNote(User user)
         {
             InitializeComponent();
+            _user = user;
+            _context = new i_kak_message_ver4Entities();
+        }
+
+       
+        private void btEnter_Click_1(object sender, RoutedEventArgs e)
+        {
+            string noteText = tbTask.Text.Trim();
+
+            if (!string.IsNullOrEmpty(noteText))
+            {
+                Note newNote = new Note
+                {
+                    UserID = _user.UserID,
+                    NoteText = noteText,
+                    CreatedDate = DateTime.Now
+                };
+
+                _context.Notes.Add(newNote);
+                _context.SaveChanges();
+
+                DialogResult = true;
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("Пожалуйста, введите текст заметки.");
+            }
         }
     }
 }

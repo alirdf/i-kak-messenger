@@ -17,7 +17,7 @@
                 <StackPanel  Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
                     <TextBlock Text="дедлайн"   VerticalAlignment="Center"/>
                     <DatePicker MinWidth="100" x:Name="dpTask"></DatePicker>
-                    <Button  x:Name="btEnter" Content="✔️" Margin="5" Padding="5,2,5,2" FontSize="20" Foreground="White" FontFamily="Arial Black"/>
+                    <Button  x:Name="btEnter" Click="btEnter_Click" Content="✔️" Margin="5" Padding="5,2,5,2" FontSize="20" Foreground="White" FontFamily="Arial Black"/>
                 </StackPanel>
             </Grid>
             

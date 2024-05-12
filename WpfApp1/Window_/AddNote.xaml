@@ -14,7 +14,7 @@
             
             
             <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom">
-                <Button x:Name="btEnter" Content="✔️" Margin="5" Padding="5,2,5,2" FontSize="20" Foreground="White" FontFamily="Arial Black"/>
+                <Button x:Name="btEnter" Click="btEnter_Click_1" Content="✔️" Margin="5" Padding="5,2,5,2" FontSize="20" Foreground="White" FontFamily="Arial Black"/>
             </StackPanel>
         </StackPanel>
 

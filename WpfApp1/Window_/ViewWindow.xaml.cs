@@ -16,6 +16,7 @@ using System.Threading;
 
 using System.Net;
 using System.Management;
+using System.Runtime.Remoting.Contexts;
 
 
 namespace WpfApp1.Window_
@@ -26,7 +27,6 @@ namespace WpfApp1.Window_
         private i_kak_message_ver4Entities _context = new i_kak_message_ver4Entities();
         private User _user;
         private Conversation _selectedConversation;
-
         public Conversation SelectedConversation
         {
             get { return _selectedConversation; }
@@ -37,7 +37,6 @@ namespace WpfApp1.Window_
 
             }
         }  // Выбранная беседа
-
         public ViewWindow(User user)
         {
             InitializeComponent();
@@ -65,7 +64,6 @@ namespace WpfApp1.Window_
 
 
         }// Конструктор программы -----------------------------------------------------------------------------------------------------------
-
         private void ViewWindow_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.F5)
@@ -73,8 +71,7 @@ namespace WpfApp1.Window_
                 RefreshData();
             }
         }// Обработка нажатия клавиши F5 -----------------------------------------------------------------------------------------------------
-
-        private void RefreshData()
+        public void RefreshData()
         {
             _context.ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
 
@@ -92,7 +89,6 @@ namespace WpfApp1.Window_
 
             livi2.ItemsSource = conversations;
         } // Обновление данных ---------------------------------------------------------------------------------------------------------------
-
         private void ViewWindow_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if (IsVisible)
@@ -100,26 +96,21 @@ namespace WpfApp1.Window_
                 RefreshData();
             }
         } // Обработка изменения видимости окна ---------------------------------------------------------------------------------------------
-
         private void btAddNote_Click(object sender, RoutedEventArgs e)
         {
-            Window_.AddNote addNote = new Window_.AddNote();
+            Window_.AddNote addNote = new Window_.AddNote(user: _user);
             addNote.ShowDialog();
         } // Добавление заметки ---------------------------------------------------------------------------------------------------------------
         private void btAddTaske_Click(object sender, RoutedEventArgs e)
         {
-            Window_.AddTask addTask = new Window_.AddTask();
+            Window_.AddTask addTask = new Window_.AddTask(user: _user);
             addTask.ShowDialog();
         } // Добавление задачи ---------------------------------------------------------------------------------------------------------------
-
         public User CurrentUser
         {
             get { return _user; }
             set { _user = value; }
         }// Текущий пользователь ---------------------------------------------------------------------------------------------------------------
-
-
-
         private void livi2_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (livi2.SelectedItem != null)
@@ -131,7 +122,6 @@ namespace WpfApp1.Window_
                 }
             }
         }// Выбор беседы ---------------------------------------------------------------------------------------------------------------
-
         private void LoadMessages(int conversationId)
         {
             var messages = _context.Messages
@@ -145,7 +135,6 @@ namespace WpfApp1.Window_
                 .ToList();
             livi.ItemsSource = messages;
         }// Загрузка сообщений ---------------------------------------------------------------------------------------------------------------
-
         private void SendMessage(object sender, RoutedEventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(tbMessage.Text))
@@ -193,16 +182,11 @@ namespace WpfApp1.Window_
                 tbMessage.Clear();
             }
         }// Отправка сообщения ---------------------------------------------------------------------------------------------------------------
-
-
-
-
         private void btAddConversation_Click(object sender, RoutedEventArgs e)
         {
             Window_.AddConversation addConversation = new Window_.AddConversation(_user);
             addConversation.ShowDialog();
         }// Добавление беседы ---------------------------------------------------------------------------------------------------------------
-
         private void Window_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e) //что то не работает
 
         {
@@ -224,8 +208,6 @@ namespace WpfApp1.Window_
 
             livi2.ItemsSource = conversations;
         }// Обновление данных ---------------------------------------------------------------------------------------------------------------
-
-
         private void btSendfile_Click(object sender, RoutedEventArgs e)
         {
             SendFileWindow sendFileWindow = new SendFileWindow(_user, _context.Users.Where(u => u.UserID != _user.UserID).ToList());
@@ -242,7 +224,6 @@ namespace WpfApp1.Window_
                 }
             }
         }// Отправка файла ---------------------------------------------------------------------------------------------------------------
-
         private void SendFile(string username, string filePath)
         {
             try
@@ -279,7 +260,6 @@ namespace WpfApp1.Window_
                 MessageBox.Show($"Произошла ошибка при отправке файла: {ex.Message}");
             }
         }// Отправка файла ---------------------------------------------------------------------------------------------------------------
-
         private string GetComputerNameByUsername(string username)
         {
             try
@@ -301,25 +281,42 @@ namespace WpfApp1.Window_
 
             return string.Empty;
         }// Отправка файла ---------------------------------------------------------------------------------------------------------------
-
-
-
-
-
-
         private void tbSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
             string searchText = tbSearch.Text.ToLower();
-            var st = _context.Messages.ToList();
-            var filteredItems = st
-            .Where(x => x.MessageText.ToLower().Contains(searchText) ||
-                   LevenshteinDistance(x.MessageText.ToLower(), searchText) <= Math.Max(3, searchText.Length - 3))
-            .ToList();
 
-            livi.ItemsSource = filteredItems;
+            // Поиск по сообщениям
+            var filteredMessages = _context.Messages
+                .Where(m => m.MessageText.ToLower().Contains(searchText) && (m.SenderID == _user.UserID || m.Conversation.ConversationParticipants.Any(p => p.UserID == _user.UserID)))
+                .Select(m => new
+                {
+                    Text = m.MessageText,
+                    SenderName = m.User.Username,
+                    SentDate = m.SentDate
+                })
+                .ToList();
+            livi.ItemsSource = filteredMessages;
+
+            // Поиск по названиям бесед
+            var filteredConversations = _context.Conversations
+                .Where(c => c.ConversationName.ToLower().Contains(searchText) && c.ConversationParticipants.Any(p => p.UserID == _user.UserID))
+                .ToList();
+            livi2.ItemsSource = filteredConversations;
+
+
+
+
+            //string searchText = tbSearch.Text.ToLower();
+            //var st = _context.Messages.ToList();
+            //var filteredItems = st
+            //.Where(x => x.MessageText.ToLower().Contains(searchText) ||
+            //       LevenshteinDistance(x.MessageText.ToLower(), searchText) <= Math.Max(3, searchText.Length - 3))
+            //.ToList();
+
+            //livi.ItemsSource = filteredItems;
 
         }// Поиск сообщений ---------------------------------------------------------------------------------------------------------------
-
+    
 
         public static int LevenshteinDistance(string s1, string s2)
         {
@@ -346,11 +343,6 @@ namespace WpfApp1.Window_
 
             return d[s1.Length, s2.Length];
         }// Поиск сообщений ---------------------------------------------------------------------------------------------------------------
-
-
-
-
-
         private void livi2_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
         {
             ListView listView = sender as ListView;
@@ -368,7 +360,6 @@ namespace WpfApp1.Window_
                 }
             }
         }// Контекстное меню беседы ---------------------------------------------------------------------------------------------------------------
-
         private void LeaveConversationMenuItem_Click(object sender, RoutedEventArgs e)
         {
             MenuItem menuItem = sender as MenuItem;
@@ -394,6 +385,102 @@ namespace WpfApp1.Window_
                 }
             }
         }// Удаление пользователя из беседы -------------------------------------------------------------------------------------------------------
+        private void SaveTasksButton_Click(object sender, RoutedEventArgs e) // Сохранение задач ---------------------------------------------------------------------
+        {
 
+            var selectedTasks = data1.SelectedItems.Cast<Task>().ToList();
+            if (MessageBox.Show($"Вы точно хотите сохранить изменения в {selectedTasks.Count} задачах?", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    foreach (var task in selectedTasks)
+                    {
+                        _context.Entry(task).State = EntityState.Modified;
+                    }
+                    _context.SaveChanges();
+                    MessageBox.Show("Изменения в заметках сохранены.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ошибка при сохранении задач: {ex.Message}");
+                }
+            }// Сохранение задач ------------------------------------------------------------------------------- 
+
+        }
+        private void SaveNotesButton_Click(object sender, RoutedEventArgs e) {
+            var selectedNotes = data2.SelectedItems.Cast<Note>().ToList();
+            if (MessageBox.Show($"Вы точно хотите сохранить изменения в {selectedNotes.Count} заметках?", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    foreach (var note in selectedNotes)
+                    {
+                        _context.Entry(note).State = EntityState.Modified;
+                    }
+                    _context.SaveChanges();
+                    MessageBox.Show("Изменения в заметках сохранены.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ошибка при сохранении заметок: {ex.Message}");
+                }
+            }
+        }// Сохранения заметок ---------------------------------------------------------------------------------------
+        private void btDellTask_Click(object sender, RoutedEventArgs e)
+        {
+            using (var context = new i_kak_message_ver4Entities())
+            {
+                try
+                {
+                    using (var _context = new DB_.i_kak_message_ver4Entities())
+                    {
+                        var r1 = data1.SelectedItems.Cast<Task>().ToList();
+                        if (MessageBox.Show($" Точно удалить {r1.Count}", "Внимание",
+                            MessageBoxButton.YesNo,
+                            MessageBoxImage.Question) ==
+                            MessageBoxResult.Yes)
+                        {
+                            var r2 = r1.Select(m => m.TaskID).ToList();
+                            var r3 = _context.Tasks.Where(m => r2.Contains(m.TaskID)).ToList();
+                            _context.Tasks.RemoveRange(r3);
+                            _context.SaveChanges();
+                            MessageBox.Show("Удалено");
+                            data1.ItemsSource = context.Tasks.Where(t => t.AssignedToID == _user.UserID || t.AssignedByID == _user.UserID).ToList();
+                        }
+                    }
+                }
+                catch { MessageBox.Show("Ошибока"); }
+            }
+        }// Удаление задач----------------------------------------------------------------------------------------------------------------
+        private void btDellNote_Click(object sender, RoutedEventArgs e)
+        {
+            using (var context = new i_kak_message_ver4Entities())
+            {
+                try
+                {
+                    using (var _context = new DB_.i_kak_message_ver4Entities())
+                    {
+                        var r1 = data2.SelectedItems.Cast<Note>().ToList();
+                        if (MessageBox.Show($" Точно удалить {r1.Count}", "Внимание",
+                            MessageBoxButton.YesNo,
+                            MessageBoxImage.Question) ==
+                            MessageBoxResult.Yes)
+                        {
+                            var r2 = r1.Select(m => m.NoteID).ToList();
+                            var r3 = _context.Notes.Where(m => r2.Contains(m.NoteID)).ToList();
+                            _context.Notes.RemoveRange(r3);
+                            _context.SaveChanges();
+                            MessageBox.Show("Удалено");
+                            data2.ItemsSource = _context.Notes.Where(n => n.UserID == _user.UserID).ToList();
+                        }
+                    }
+                }
+                catch { MessageBox.Show("Ошибока"); }
+            }
+
+        }// Удаление заметок ----------------------------------------------------------------------------------------------------------------
     }
 }
+
+
+
