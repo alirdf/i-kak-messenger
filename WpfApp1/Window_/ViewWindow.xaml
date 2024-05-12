@@ -24,10 +24,10 @@
             <StackPanel Grid.Row="0" VerticalAlignment="Top" HorizontalAlignment="Left" Orientation="Horizontal">
                 <Menu>
                     <MenuItem Header="_Меню"
->
+    >
                         <MenuItem Header="_Профиль"/>
                         <Separator />
-                        <MenuItem Header="_Настройки" />
+                        <MenuItem Header="_Выйти" Click="MenuItem_Logout_Click" />
                     </MenuItem>
                 </Menu>
                 <TextBlock VerticalAlignment="Center" FontSize="15" Margin="5,5,0,5" Text="Поиск"/>
@@ -85,11 +85,12 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-
+    
                     <TextBox x:Name="tbMessage" Grid.Column="1" Margin="5" />
                     <Button Grid.Column="3" Content="Отправить" Click="SendMessage" Foreground="White" Margin="5" />
-                    <Button Grid.Column="2" Content="Фаил" x:Name="btSendfile"  Foreground="White" Margin="5" Click="btSendfile_Click" />
+                    <Button Grid.Column="2" Content="🖼️" x:Name="btSendfile"  Foreground="White" Margin="5" Click="btSendfile_Click" />
                     <Button Grid.Column="0" Content="➕" x:Name="btAddConversation" Click="btAddConversation_Click" Padding="3" Foreground="White" Margin="5" />
                 </Grid>
             </Grid>

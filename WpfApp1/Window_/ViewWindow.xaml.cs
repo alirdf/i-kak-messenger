@@ -17,6 +17,7 @@ using System.Threading;
 using System.Net;
 using System.Management;
 using System.Runtime.Remoting.Contexts;
+using System.Diagnostics;
 
 
 namespace WpfApp1.Window_
@@ -131,6 +132,7 @@ namespace WpfApp1.Window_
                     Text = m.MessageText,
                     SenderName = m.User.Username,
                     SentDate = m.SentDate
+
                 })
                 .ToList();
             livi.ItemsSource = messages;
@@ -210,21 +212,40 @@ namespace WpfApp1.Window_
         }// Обновление данных ---------------------------------------------------------------------------------------------------------------
         private void btSendfile_Click(object sender, RoutedEventArgs e)
         {
-            SendFileWindow sendFileWindow = new SendFileWindow(_user, _context.Users.Where(u => u.UserID != _user.UserID).ToList());
-            if (sendFileWindow.ShowDialog() == true)
-            {
-                User selectedReceiver = sendFileWindow.SelectedReceiver;
-                string selectedFilePath = sendFileWindow.SelectedFilePath;
+            // Открыть проект NetShare_
+            OpenNetShareProject();
 
-                if (!string.IsNullOrEmpty(selectedFilePath))
-                {
-                    // Отправка файла
-                    SendFile(selectedReceiver.Username, selectedFilePath);
-                    MessageBox.Show($"Файл '{Path.GetFileName(selectedFilePath)}' успешно отправлен пользователю {selectedReceiver.Username}.");
-                }
-            }
+            //SendFileWindow sendFileWindow = new SendFileWindow(_user, _context.Users.Where(u => u.UserID != _user.UserID).ToList());
+            //if (sendFileWindow.ShowDialog() == true)
+            //{
+            //    User selectedReceiver = sendFileWindow.SelectedReceiver;
+            //    string selectedFilePath = sendFileWindow.SelectedFilePath;
+
+            //    if (!string.IsNullOrEmpty(selectedFilePath))
+            //    {
+            //        // Отправка файла
+            //        SendFile(selectedReceiver.Username, selectedFilePath);
+            //        MessageBox.Show($"Файл '{Path.GetFileName(selectedFilePath)}' успешно отправлен пользователю {selectedReceiver.Username}.");
+            //    }
+            //}
         }// Отправка файла ---------------------------------------------------------------------------------------------------------------
-        private void SendFile(string username, string filePath)
+
+        private void OpenNetShareProject()
+        {
+            try
+            {
+                // Путь к исполняемому файлу проекта NetShare_
+                string netShareProjectPath = @"C:\Users\alir2\OneDrive\Рабочий стол\NetShare-master\NetShare\bin\Debug\net8.0-windows\NetShare.exe";
+
+                // Запустить приложение NetShare
+                Process.Start(netShareProjectPath);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при открытии проекта NetShare_: {ex.Message}");
+            }
+        }
+            private void SendFile(string username, string filePath)
         {
             try
             {
@@ -316,8 +337,6 @@ namespace WpfApp1.Window_
             //livi.ItemsSource = filteredItems;
 
         }// Поиск сообщений ---------------------------------------------------------------------------------------------------------------
-    
-
         public static int LevenshteinDistance(string s1, string s2)
         {
             int[,] d = new int[s1.Length + 1, s2.Length + 1];
@@ -404,10 +423,11 @@ namespace WpfApp1.Window_
                 {
                     MessageBox.Show($"Ошибка при сохранении задач: {ex.Message}");
                 }
-            }// Сохранение задач ------------------------------------------------------------------------------- 
+            }
 
-        }
-        private void SaveNotesButton_Click(object sender, RoutedEventArgs e) {
+        }// Сохранение задач ------------------------------------------------------------------------------- 
+        private void SaveNotesButton_Click(object sender, RoutedEventArgs e)
+        {
             var selectedNotes = data2.SelectedItems.Cast<Note>().ToList();
             if (MessageBox.Show($"Вы точно хотите сохранить изменения в {selectedNotes.Count} заметках?", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
@@ -479,8 +499,16 @@ namespace WpfApp1.Window_
             }
 
         }// Удаление заметок ----------------------------------------------------------------------------------------------------------------
+        private void MenuItem_Logout_Click(object sender, RoutedEventArgs e)
+        {
+            // Закрыть текущее окно
+            this.Close();
+
+            // Открыть окно авторизации
+            MainWindow loginWindow = new MainWindow();
+            loginWindow.Show();
+        }
+
+
     }
 }
-
-
-
