@@ -235,7 +235,7 @@ namespace WpfApp1.Window_
             try
             {
                 // Путь к исполняемому файлу проекта NetShare_
-                string netShareProjectPath = @"C:\Users\alir2\source\repos\WpfApp1\NetShare-master\NetShare\bin\Debug\net8.0-windows\NetShare.exe";
+                string netShareProjectPath = @"C:\Users\alir2\OneDrive\Рабочий стол\проекты git\NetShare-master\NetShare\bin\Debug\net8.0-windows\NetShare.exe";
 
                 // Запустить приложение NetShare
                 Process.Start(netShareProjectPath);
