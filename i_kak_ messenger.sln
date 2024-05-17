@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp1", "WpfApp1\WpfApp1.csproj", "{1C8A1D63-BBD0-4C51-919E-7DB9C334C700}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "message", "WpfApp1\message.csproj", "{1C8A1D63-BBD0-4C51-919E-7DB9C334C700}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetShare", "..\..\проекты git\NetShare-master\NetShare\NetShare.csproj", "{F03211DD-614B-424A-93AA-611F5FFD379E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "file", "..\..\проекты git\NetShare-master\NetShare\file.csproj", "{F03211DD-614B-424A-93AA-611F5FFD379E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "messageTests", "messageTests\messageTests.csproj", "{93F4CAA6-8C90-40CD-8CAB-A894195844B8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{F03211DD-614B-424A-93AA-611F5FFD379E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F03211DD-614B-424A-93AA-611F5FFD379E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F03211DD-614B-424A-93AA-611F5FFD379E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93F4CAA6-8C90-40CD-8CAB-A894195844B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93F4CAA6-8C90-40CD-8CAB-A894195844B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93F4CAA6-8C90-40CD-8CAB-A894195844B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93F4CAA6-8C90-40CD-8CAB-A894195844B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
