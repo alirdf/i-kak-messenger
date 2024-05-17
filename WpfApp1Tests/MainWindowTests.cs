@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WpfApp1.DB_;
 
+
 namespace WpfApp1.Tests
 {
     //[TestClass()]
@@ -139,7 +140,7 @@ namespace WpfApp1.Tests
         public void Registration_WithValidData_AddsUserToDatabase()
         {
             // Arrange
-            mainWindow.tbRegLog
+            mainWindow.tbRegLog;
             }
     }
 }

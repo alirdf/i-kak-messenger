@@ -26,6 +26,8 @@ namespace WpfApp1
             InitializeComponent();
         }
 
+
+
         private void btAuto_Click(object sender, RoutedEventArgs e)
         {
             using (var _context = new DB_.i_kak_message_ver4Entities())
@@ -133,5 +135,7 @@ namespace WpfApp1
                 }
             }
         }
+
+        
     }
 }
