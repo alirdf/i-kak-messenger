@@ -4,146 +4,150 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1.Window_"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="ViewWindow" MinHeight="720" MinWidth="1080" IsVisibleChanged="Window_IsVisibleChanged"  >
+        Title="ай как меменджер" MinHeight="720" MinWidth="1080" IsVisibleChanged="Window_IsVisibleChanged"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto">
 
-    <Grid Background="#f1f3f9">
+    <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="480*"/>
-            <ColumnDefinition Width="280*"/>
+            <ColumnDefinition Width="480*" />
+            <ColumnDefinition Width="280*" />
         </Grid.ColumnDefinitions>
-
-        <Grid Grid.Row="0">
-            <!--беседы и настройка-->
-            <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-
-            <!--поиск и что то там-->
-            <StackPanel Grid.Row="0" VerticalAlignment="Top" HorizontalAlignment="Left" Orientation="Horizontal">
-                <Menu>
-                    <MenuItem Header="_Меню"
-    >
-                        <MenuItem Header="_Профиль"/>
-                        <Separator />
-                        <MenuItem Header="_Выйти" Click="MenuItem_Logout_Click" />
-                    </MenuItem>
-                </Menu>
-                <TextBlock VerticalAlignment="Center" FontSize="15" Margin="5,5,0,5" Text="Поиск"/>
-                <TextBox  TextChanged="tbSearch_TextChanged" x:Name="tbSearch" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" Margin="5,5,0,5" Text="" MinWidth="100"/>
-            </StackPanel>
-
-            <!--сообщения-->
-            <Grid Grid.Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="200" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-
-                <ListView x:Name="livi2" Grid.Column="0" SelectionChanged="livi2_SelectionChanged" MouseRightButtonUp="livi2_MouseRightButtonUp">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding ConversationName}" />
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                    <ListView.ContextMenu>
-                        <ContextMenu>
-                            <MenuItem Header="Выйти" Click="LeaveConversationMenuItem_Click" />
-                        </ContextMenu>
-                    </ListView.ContextMenu>
-                </ListView>
-
-                <ListView x:Name="livi" Grid.Column="1">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal" >
-                                <TextBlock Text="{Binding SenderName}" FontWeight="Bold" />
-                                <TextBlock Text="{Binding Text}" Margin="5,0" />
-                                <TextBlock Text="{Binding SentDate, StringFormat='{}{0:HH:mm}'}" Foreground="Gray" />
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-
-                </ListView>
-            </Grid>
-            <Grid Grid.Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="257*"/>
-                    <ColumnDefinition Width="426*"/>
-                </Grid.ColumnDefinitions>
+        <materialDesign:Card Padding="10">
+            <Grid Grid.Row="0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="550*" />
+                    <RowDefinition Height="50*"/>
                 </Grid.RowDefinitions>
 
+                <StackPanel Grid.Row="0" VerticalAlignment="Top" HorizontalAlignment="Left" Orientation="Horizontal">
+                    <materialDesign:PopupBox Background="{DynamicResource Transparent}"  Foreground="#8bc34a" Margin="5">
+                        <StackPanel>
+                            <Button Content="_Профиль" />
+                            <Separator />
+                            <Button Content="_Выйти" Click="MenuItem_Logout_Click" />
+                        </StackPanel>
+                    </materialDesign:PopupBox>
+                    <TextBox TextChanged="tbSearch_TextChanged" x:Name="tbSearch" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" Margin="5,5,0,5" Text="" MinWidth="100"  materialDesign:HintAssist.Hint="поиск"/>
+                </StackPanel>
 
-
-                <Grid Grid.Row="1" Grid.ColumnSpan="2" Margin="5" Grid.RowSpan="2">
+                <Grid Grid.Row="1" Grid.RowSpan="2">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="200" />
                         <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-    
-                    <TextBox x:Name="tbMessage" Grid.Column="1" Margin="5" />
-                    <Button Grid.Column="3" Content="Отправить" Click="SendMessage" Foreground="White" Margin="5" />
-                    <Button Grid.Column="2" Content="🖼️" x:Name="btSendfile"  Foreground="White" Margin="5" Click="btSendfile_Click" />
-                    <Button Grid.Column="0" Content="➕" x:Name="btAddConversation" Click="btAddConversation_Click" Padding="3" Foreground="White" Margin="5" />
+
+                    <ListView x:Name="livi2" Grid.Column="0" SelectionChanged="livi2_SelectionChanged" MouseRightButtonUp="livi2_MouseRightButtonUp">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding ConversationName}" />
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                        <ListView.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Выйти" Click="LeaveConversationMenuItem_Click" />
+                            </ContextMenu>
+                        </ListView.ContextMenu>
+                    </ListView>
+
+                    <ListView x:Name="livi" Grid.Column="1">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding SenderName}" FontWeight="Bold" />
+                                    <TextBlock Text="{Binding Text}" Margin="5,0" />
+                                    <TextBlock Text="{Binding SentDate, StringFormat='{}{0:HH:mm}'}" Foreground="{DynamicResource MaterialDesignBody}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+
+                <Grid Grid.Row="2" Grid.RowSpan="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="257*" />
+                        <ColumnDefinition Width="426*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="1" Grid.ColumnSpan="2" Margin="5" Grid.RowSpan="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBox x:Name="tbMessage" Grid.Column="1" Margin="5" />
+                        <Button Grid.Column="3" Content="Отправить" Click="SendMessage" Foreground="{DynamicResource MaterialDesignPaper}" Margin="5" Style="{StaticResource MaterialDesignRaisedButton}" />
+                        <Button Grid.Column="2" Content="🖼️" x:Name="btSendfile" Foreground="{DynamicResource MaterialDesignPaper}" Margin="5" Style="{StaticResource MaterialDesignRaisedButton}" Click="btSendfile_Click" />
+                        <Button Background="{DynamicResource Transparent}"  Foreground="#8bc34a" Grid.Column="0" Content="➕" x:Name="btAddConversation" Click="btAddConversation_Click" Padding="3" Margin="5" Style="{StaticResource MaterialDesignRaisedButton}" />
+                    </Grid>
                 </Grid>
             </Grid>
-        </Grid>
 
-        <!-- задачи и записи -->
+        </materialDesign:Card>
+
         <Grid Grid.Column="2">
-            <TabControl >
-                <!--задачи-->
-                <TabItem Header="Задачи">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="47*"/>
-                            <ColumnDefinition Width="82*"/>
-                        </Grid.ColumnDefinitions>
-                        <DataGrid  AutoGenerateColumns="False" Background="#f1f3f9" x:Name="data1" Grid.ColumnSpan="2">
-                            <DataGrid.Columns>
-                                <DataGridCheckBoxColumn Header="Статус" Binding="{Binding Status}"/>
-                                <DataGridTextColumn Header="Дедлайн" Binding="{Binding DueDate,StringFormat='{}{0:d}'}"/>
-                                <DataGridTextColumn Header="Текст" Binding="{Binding TaskDescription}"/>
-                                <DataGridTextColumn Header="Создано" Binding="{Binding CreatedDate,StringFormat='{}{0:d}'}" />
-                            </DataGrid.Columns>
-                        </DataGrid>
-                        <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left" 
-                                     VerticalAlignment="Bottom">
-                            <Button Content="➕" Margin="5" Padding="1" FontSize="20" Foreground="White"  FontFamily="Arial Black" x:Name="btAddTaske" Click="btAddTaske_Click"/>
-                            <Button Content="✖️" Margin="5" Padding="1" FontSize="20" Foreground="White" FontFamily="Arial Black" x:Name="btDellTask" Click="btDellTask_Click"/>
+            <materialDesign:Card Padding="10">
+                <TabControl>
+                    <TabItem Header="Задачи">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="570*"/>
+                                <RowDefinition Height="50*"/>
+                            </Grid.RowDefinitions>
 
-                        </StackPanel>
-                        <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Column="1">
-                            <Button x:Name="SaveTasksButton" Click="SaveTasksButton_Click" Content="✔️" Margin="5" Padding="1" FontSize="20" Foreground="White" FontFamily="Arial Black"/>
-                        </StackPanel>
-                    </Grid>
-                </TabItem>
-                <!--заметки-->
-                <TabItem Header="Заметки">
-                    <Grid>
-                        <DataGrid AutoGenerateColumns="False" Background="#f1f3f9" x:Name="data2">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn  Header="Текст" Binding="{Binding NoteText}"/>
-                                <DataGridTextColumn  Header="Создано" Binding="{Binding CreatedDate,StringFormat='{}{0:d}'}"/>
-                            </DataGrid.Columns>
-                        </DataGrid>
-                        <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="1">
-                            <Button Content="➕" Margin="5" Padding="1" FontSize="20" Foreground="White" FontFamily="Arial Black" x:Name="btAddNote" Click="btAddNote_Click"/>
-                            <Button Content="✖️" Margin="5" Padding="1" FontSize="20" Foreground="White" FontFamily="Arial Black" x:Name="btDellNote" Click="btDellNote_Click"/>
-                        </StackPanel>
-                        <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom">
-                            <Button x:Name="SaveNotesButton" Click="SaveNotesButton_Click" Content="✔️" Margin="5" Padding="1" FontSize="20" Foreground="White" FontFamily="Arial Black"/>
-                        </StackPanel>
-                    </Grid>
-                </TabItem>
-            </TabControl>
+                            <DataGrid Grid.Row="0" AutoGenerateColumns="False" Background="{DynamicResource MaterialDesignPaper}" x:Name="data1" Grid.RowSpan="2">
+                                <DataGrid.Columns>
+                                    <DataGridCheckBoxColumn Header="Статус" Binding="{Binding Status}" />
+                                    <DataGridTextColumn Header="Дедлайн" Binding="{Binding DueDate,StringFormat='{}{0:d}'}" />
+                                    <DataGridTextColumn Header="Текст" Binding="{Binding TaskDescription}" />
+                                    <DataGridTextColumn Header="Создано" Binding="{Binding CreatedDate,StringFormat='{}{0:d}'}" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="1">
+                                <Button Background="{DynamicResource Transparent}"  Foreground="#8bc34a" Content="➕" Margin="5" Padding="1" FontSize="20" FontFamily="Arial Black" x:Name="btAddTaske" Click="btAddTaske_Click" Style="{StaticResource MaterialDesignRaisedButton}" />
+                                <Button Background="{DynamicResource Transparent}"  Foreground="#8bc34a" Content="✖️" Margin="5" Padding="1" FontSize="20" FontFamily="Arial Black" x:Name="btDellTask" Click="btDellTask_Click" Style="{StaticResource MaterialDesignRaisedButton}" />
+                            </StackPanel>
+                            <StackPanel  HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="1">
+                                <Button  Background="{DynamicResource Transparent}"  Foreground="#8bc34a" x:Name="SaveTasksButton" Click="SaveTasksButton_Click" Content="✔️" Margin="5" Padding="1" FontSize="20"  FontFamily="Arial Black" Style="{StaticResource MaterialDesignRaisedButton}" />
+                            </StackPanel>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="Заметки">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="570*"/>
+                                <RowDefinition Height="50*"/>
+                            </Grid.RowDefinitions>
+                            <DataGrid Grid.Row="0" AutoGenerateColumns="False" Background="{DynamicResource MaterialDesignPaper}" x:Name="data2" Grid.RowSpan="2">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Текст" Binding="{Binding NoteText}" />
+                                    <DataGridTextColumn Header="Создано" Binding="{Binding CreatedDate,StringFormat='{}{0:d}'}" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="1">
+                                <Button  Background="{DynamicResource Transparent}"  Foreground="#8bc34a" Content="➕" Margin="5" Padding="1" FontSize="20" FontFamily="Arial Black" x:Name="btAddNote" Click="btAddNote_Click" Style="{StaticResource MaterialDesignRaisedButton}" />
+                                <Button  Background="{DynamicResource Transparent}"  Foreground="#8bc34a" Content="✖️" Margin="5" Padding="1" FontSize="20"  FontFamily="Arial Black" x:Name="btDellNote" Click="btDellNote_Click" Style="{StaticResource MaterialDesignRaisedButton}" />
+                            </StackPanel>
+                            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Margin="325,0,0,0" Grid.Row="1">
+                                <Button Background="{DynamicResource Transparent}"  Foreground="#8bc34a" x:Name="SaveNotesButton" Click="SaveNotesButton_Click" Content="✔️" Margin="5" Padding="1" FontSize="20" FontFamily="Arial Black" Style="{StaticResource MaterialDesignRaisedButton}" />
+                            </StackPanel>
+                        </Grid>
+                    </TabItem>
+                </TabControl>
+            </materialDesign:Card>
         </Grid>
     </Grid>
 </Window>
