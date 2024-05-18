@@ -57,5 +57,10 @@ namespace WpfApp1.Window_
                 MessageBox.Show("Пожалуйста, введите текст задачи.");
             }
         }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

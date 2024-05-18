@@ -1,37 +1,51 @@
 ﻿<Window x:Class="WpfApp1.Window_.AddConversation"
-      
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1.Window_"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="Создать беседу" Height="450" Width="450">
-    <Grid>
+        Title="Создать беседу" Height="450" Width="600" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}">
+    <Grid Margin="20">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="70" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal">
+                <TextBox x:Name="txtConversationName" FontSize="16" FontFamily="Arial" MinWidth="200" Margin="0,0,20,0" materialDesign:HintAssist.Hint="Введите название беседы" />
+            </StackPanel>
+            <ListBox x:Name="lbParticipants" Grid.Row="1" Margin="0,20,0,0" SelectionMode="Multiple" ItemsSource="{Binding Path=Users}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Username}" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+        <Grid Grid.Row="2" Margin="0,20,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button x:Name="CancelButton" Content="Отмена" Padding="10,5" FontSize="16" Foreground="#8bc34a" Background="{DynamicResource Transparent}" Margin="0,0,10,0" Click="CancelButton_Click" Style="{StaticResource MaterialDesignRaisedButton}" />
 
-        <StackPanel Orientation="Horizontal" Grid.Row="0">
-        <TextBlock Text="Название беседы" Margin="10" />
-        <TextBox MinWidth="100" x:Name="txtConversationName" Margin="10" Grid.Row="1" />
-            
-        </StackPanel>
-
-        <TextBlock Text="Участники" Margin="10" Grid.Row="1" VerticalAlignment="Center"/>
-        <!--<ListBox x:Name="lbParticipants" Margin="10" Grid.Row="3" SelectionMode="Multiple" />-->
-        <ListBox x:Name="lbParticipants" Margin="10" Grid.Row="3" SelectionMode="Multiple" ItemsSource="{Binding Path=Users}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding Username}" />
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <StackPanel  Orientation="Horizontal" HorizontalAlignment="Right" Margin="10" Grid.Row="1">
-            <Button Foreground="White" Content="Отмена" Margin="5" Click="CancelButton_Click" />
-            <Button Foreground="White" Content="Создать" Margin="5" Click="CreateButton_Click" />
-        </StackPanel>
+                <Button x:Name="CreateButton" Content="Создать" Padding="10,5" FontSize="16" Foreground="White" Background="{DynamicResource PrimaryHueMidBrush}" Click="CreateButton_Click" Style="{StaticResource MaterialDesignRaisedButton}" />
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>

@@ -55,5 +55,10 @@ namespace WpfApp1.Window_
                 MessageBox.Show("Пожалуйста, введите текст заметки.");
             }
         }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

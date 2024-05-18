@@ -31,7 +31,7 @@
                     </MenuItem>
                 </Menu>
                 <TextBlock VerticalAlignment="Center" FontSize="15" Margin="5,5,0,5" Text="Поиск"/>
-                <TextBox TextChanged="tbSearch_TextChanged" x:Name="tbSearch" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" Margin="5,5,0,5" Text="" MinWidth="100"/>
+                <TextBox  TextChanged="tbSearch_TextChanged" x:Name="tbSearch" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" Margin="5,5,0,5" Text="" MinWidth="100"/>
             </StackPanel>
 
             <!--сообщения-->

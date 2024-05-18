@@ -4,19 +4,34 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1.Window_"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="AddNote" Height="400" Width="400">
-    <Grid>
-        <StackPanel>
+        Title="Добавить заметку" Height="450" Width="600" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <materialDesign:Card Grid.Row="1" Padding="10">
+            <TextBox x:Name="tbTask" FontSize="16" FontFamily="Arial" TextWrapping="Wrap" AcceptsReturn="True" Padding="10" VerticalScrollBarVisibility="Auto" materialDesign:HintAssist.Hint="Введите текст заметки..." />
+        </materialDesign:Card>
+        <Grid Grid.Row="2" Margin="0,20,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="btEnter" Grid.Column="2" Content="Сохранить" Padding="10,5" FontSize="16" Foreground="White" Background="{DynamicResource PrimaryHueMidBrush}" Click="btEnter_Click_1" Style="{StaticResource MaterialDesignRaisedButton}" />
+            <Button Grid.Column="1" x:Name="CancelButton" Content="Отмена" Padding="10,5" FontSize="16" Foreground="#8bc34a" Background="{DynamicResource Transparent}" Margin="0,0,10,0" Click="CancelButton_Click" Style="{StaticResource MaterialDesignRaisedButton}" />
 
-            <TextBlock Text="Текст :"/>
-            <TextBox MinHeight="300" TextWrapping="Wrap" x:Name="tbTask"></TextBox>
-            
-            
-            <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom">
-                <Button x:Name="btEnter" Click="btEnter_Click_1" Content="✔️" Margin="5" Padding="5,2,5,2" FontSize="20" Foreground="White" FontFamily="Arial Black"/>
-            </StackPanel>
-        </StackPanel>
-
+        </Grid>
     </Grid>
 </Window>

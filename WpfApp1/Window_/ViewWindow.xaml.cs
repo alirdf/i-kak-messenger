@@ -139,6 +139,8 @@ namespace WpfApp1.Window_
         }// Загрузка сообщений ---------------------------------------------------------------------------------------------------------------
         private void SendMessage(object sender, RoutedEventArgs e)
         {
+            try
+            {
             if (!string.IsNullOrWhiteSpace(tbMessage.Text))
             {
                 // Создать новое сообщение
@@ -183,6 +185,9 @@ namespace WpfApp1.Window_
                 // Очистить текстовое поле для ввода сообщения
                 tbMessage.Clear();
             }
+
+            }
+            catch { }
         }// Отправка сообщения ---------------------------------------------------------------------------------------------------------------
         private void btAddConversation_Click(object sender, RoutedEventArgs e)
         {
