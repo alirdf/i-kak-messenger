@@ -152,6 +152,9 @@
     <Compile Include="Window_\AddTask.xaml.cs">
       <DependentUpon>AddTask.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Window_\EditProfileWindow.xaml.cs">
+      <DependentUpon>EditProfileWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Window_\SendFileWindow.xaml.cs">
       <DependentUpon>SendFileWindow.xaml</DependentUpon>
     </Compile>
@@ -187,6 +190,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Window_\AddTask.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Window_\EditProfileWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

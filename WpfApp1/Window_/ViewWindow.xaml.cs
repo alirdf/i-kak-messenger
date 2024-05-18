@@ -513,7 +513,11 @@ namespace WpfApp1.Window_
             MainWindow loginWindow = new MainWindow();
             loginWindow.Show();
         }
-
+        private void ProfileMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            EditProfileWindow editProfileWindow = new EditProfileWindow(_user);
+            editProfileWindow.ShowDialog();
+        }
 
     }
 }

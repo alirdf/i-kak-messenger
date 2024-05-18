@@ -29,7 +29,7 @@
                 <StackPanel Grid.Row="0" VerticalAlignment="Top" HorizontalAlignment="Left" Orientation="Horizontal">
                     <materialDesign:PopupBox Background="{DynamicResource Transparent}"  Foreground="#8bc34a" Margin="5">
                         <StackPanel>
-                            <Button Content="_Профиль" />
+                            <Button Content="_Профиль" Click="ProfileMenuItem_Click" />
                             <Separator />
                             <Button Content="_Выйти" Click="MenuItem_Logout_Click" />
                         </StackPanel>
