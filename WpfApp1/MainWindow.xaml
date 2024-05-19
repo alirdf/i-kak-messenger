@@ -6,14 +6,14 @@
         xmlns:local="clr-namespace:WpfApp1"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="авторизация" ResizeMode="NoResize" Height="400" Width="400"
+        Title="авторизация" ResizeMode="NoResize" Height="450" Width="400"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         Background="{DynamicResource MaterialDesignPaper}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto">
     <Grid>
-        <materialDesign:Card Padding="16">
+        <materialDesign:Card Padding="10">
             <TabControl>
                 <TabItem Header="Вход">
                     <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
@@ -42,8 +42,14 @@
                             <TextBlock Text="Пароль" Margin="5" />
                             <PasswordBox x:Name="tbRegPass2" Margin="5" />
                         </StackPanel>
+                        <StackPanel>
+                            <TextBlock Text="Email" Margin="5" />
+                            <TextBox x:Name="tbRegEmail" Margin="5" FontSize="15" />
+                        </StackPanel>
+                        
                         <Button x:Name="btReg" Click="btReg_Click" Content="Зарегитрироваться" Margin="5" FontFamily="Arial" Foreground="{DynamicResource MaterialDesignPaper}" Style="{StaticResource MaterialDesignRaisedButton}" />
                     </StackPanel>
+                    
                 </TabItem>
             </TabControl>
         </materialDesign:Card>

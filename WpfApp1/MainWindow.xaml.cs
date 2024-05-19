@@ -52,78 +52,64 @@ namespace WpfApp1
             using (var _context = new DB_.i_kak_message_ver4Entities())
             {
                 var user = _context.Users.FirstOrDefault(x => x.Username == tbRegLog.Text);
-                if (tbRegPass1.Password.Length < 5 || tbRegPass1.Password.Length < 5 ||
-                tbRegPass2.Password.Length < 5)
+                if (string.IsNullOrWhiteSpace(tbRegLog.Text) ||
+                    string.IsNullOrWhiteSpace(tbRegPass1.Password) ||
+                    string.IsNullOrWhiteSpace(tbRegPass2.Password) ||
+                    string.IsNullOrWhiteSpace(tbRegEmail.Text))
                 {
-                    MessageBox.Show("Не менее 5 символов");
-                }
-                bool hasUpper = false, hasLower = false;
-                foreach (char c in tbRegPass1.Password)
-                {
-                    if (char.IsUpper(c))
-                    {
-                        hasUpper = true;
-                    }
-                    if (char.IsLower(c))
-                    {
-                        hasLower = true;
-                    }
-                }
-                foreach (char c in tbRegPass1.Password)
-                {
-                    if (char.IsUpper(c))
-                    {
-                        hasUpper = true;
-                    }
-                    if (char.IsLower(c))
-                    {
-                        hasLower = true;
-                    }
-                }
-                if (!hasUpper || !hasLower)
-                {
-                    MessageBox.Show("Вверхний регистр добавь");
+                    MessageBox.Show("Все поля должны быть заполнены.");
                     return;
                 }
-                bool hasDigit = false, hasLetter = false;
-                foreach (char c in tbRegPass1.Password)
+
+                const int maxUsernameLength = 50;
+                const int minPasswordLength = 5;
+                const int maxPasswordLength = 100;
+                const int maxEmailLength = 100;
+
+                if (tbRegLog.Text.Length > maxUsernameLength)
                 {
-                    if (char.IsDigit(c))
-                    {
-                        hasDigit = true;
-                    }
-                    if (char.IsLetter(c))
-                    {
-                        hasLetter = true;
-                    }
-                }
-                if (!hasDigit || !hasLetter)
-                {
-                    MessageBox.Show("Цифры");
+                    MessageBox.Show($"Имя пользователя не должно превышать {maxUsernameLength} символов.");
                     return;
                 }
-                if (tbRegPass1.Password.Trim() == "" && tbRegPass2.Password.Trim() == "")
+
+                if (tbRegPass1.Password.Length < minPasswordLength || tbRegPass1.Password.Length > maxPasswordLength)
                 {
-                    MessageBox.Show("Введи пароль");
+                    MessageBox.Show($"Пароль должен быть от {minPasswordLength} до {maxPasswordLength} символов.");
                     return;
                 }
+
+                if (tbRegEmail.Text.Length > maxEmailLength)
+                {
+                    MessageBox.Show($"Электронная почта не должна превышать {maxEmailLength} символов.");
+                    return;
+                }
+
+                if (!IsValidEmail(tbRegEmail.Text))
+                {
+                    MessageBox.Show("Неверный формат электронной почты.");
+                    return;
+                }
+
                 if (user != null)
                 {
-                    MessageBox.Show("Такой пользователь уже ЕСТЬ");
+                    MessageBox.Show("Пользователь с таким именем уже существует.");
                     return;
-
                 }
+
                 if (tbRegPass1.Password != tbRegPass2.Password)
                 {
-                    MessageBox.Show("Пароли НЕ совпадают");
+                    MessageBox.Show("Пароли не совпадают.");
                     return;
                 }
+
                 try
                 {
                     User usern = new User()
                     {
                         Username = tbRegLog.Text,
-                        Password = tbRegPass1.Password
+                        Password = tbRegPass1.Password,
+                        Email = tbRegEmail.Text,
+                        RegistrationDate = DateTime.Now
                     };
                     _context.Users.Add(usern);
                     _context.SaveChanges();
@@ -135,7 +121,19 @@ namespace WpfApp1
                 }
             }
         }
-        
-       
+
+        private bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
     }
 }

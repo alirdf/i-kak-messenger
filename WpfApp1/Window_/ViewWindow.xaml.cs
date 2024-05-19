@@ -89,6 +89,8 @@ namespace WpfApp1.Window_
                 .ToList();
 
             livi2.ItemsSource = conversations;
+
+
         } // Обновление данных ---------------------------------------------------------------------------------------------------------------
         private void ViewWindow_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
@@ -517,6 +519,85 @@ namespace WpfApp1.Window_
         {
             EditProfileWindow editProfileWindow = new EditProfileWindow(_user);
             editProfileWindow.ShowDialog();
+        }
+
+        private void AddParticipantMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            // Открыть окно для выбора пользователя, которого нужно добавить в беседу
+            AddParticipantWindow addParticipantWindow = new AddParticipantWindow(_selectedConversation.ConversationID, _context.Users.Where(u => u.UserID != _user.UserID).ToList());
+            if (addParticipantWindow.ShowDialog() == true)
+            {
+                int userId = addParticipantWindow.SelectedUserId;
+                AddParticipantToConversation(_selectedConversation.ConversationID, userId);
+                RefreshData();
+            }
+        }
+        private void AddParticipantToConversation(int conversationId, int userId)
+        {
+            using (var context = new i_kak_message_ver4Entities())
+            {
+                var participant = new ConversationParticipant
+                {
+                    ConversationID = conversationId,
+                    UserID = userId
+                };
+                context.ConversationParticipants.Add(participant);
+                context.SaveChanges();
+            }
+        }
+
+        private void RemoveParticipantMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            // Получить список участников текущей беседы
+            var conversationParticipants = _context.ConversationParticipants
+                .Where(p => p.ConversationID == _selectedConversation.ConversationID)
+                .Select(p => p.User)
+                .ToList();
+
+            // Открыть окно для выбора пользователя, которого нужно удалить из беседы
+            RemoveParticipantWindow removeParticipantWindow = new RemoveParticipantWindow(_selectedConversation.ConversationID, conversationParticipants);
+            if (removeParticipantWindow.ShowDialog() == true)
+            {
+                int userId = removeParticipantWindow.SelectedUserId;
+                RemoveParticipantFromConversation(_selectedConversation.ConversationID, userId);
+                RefreshData();
+            }
+        }
+        private void RemoveParticipantFromConversation(int conversationId, int userId)
+        {
+            using (var context = new i_kak_message_ver4Entities())
+            {
+                var participant = context.ConversationParticipants.FirstOrDefault(p => p.ConversationID == conversationId && p.UserID == userId);
+                if (participant != null)
+                {
+                    context.ConversationParticipants.Remove(participant);
+                    context.SaveChanges();
+                }
+            }
+        }
+
+        private void UpdateConversationNameMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            // Открыть окно для ввода нового имени беседы
+            UpdateConversationNameWindow updateConversationNameWindow = new UpdateConversationNameWindow(_selectedConversation.ConversationID, _selectedConversation.ConversationName);
+            if (updateConversationNameWindow.ShowDialog() == true)
+            {
+                string newName = updateConversationNameWindow.NewConversationName;
+                UpdateConversationName(_selectedConversation.ConversationID, newName);
+                RefreshData();
+            }
+        }
+        private void UpdateConversationName(int conversationId, string newName)
+        {
+            using (var context = new i_kak_message_ver4Entities())
+            {
+                var conversation = context.Conversations.FirstOrDefault(c => c.ConversationID == conversationId);
+                if (conversation != null)
+                {
+                    conversation.ConversationName = newName;
+                    context.SaveChanges();
+                }
+            }
         }
 
     }

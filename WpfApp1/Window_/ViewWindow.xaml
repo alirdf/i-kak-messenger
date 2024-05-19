@@ -51,6 +51,11 @@
                         </ListView.ItemTemplate>
                         <ListView.ContextMenu>
                             <ContextMenu>
+                                <Separator />
+                                <MenuItem Header="Изменить имя беседы" Click="UpdateConversationNameMenuItem_Click" />
+                                <MenuItem Header="Добавить участника" Click="AddParticipantMenuItem_Click" />
+                                <MenuItem Header="Удалить участника" Click="RemoveParticipantMenuItem_Click" />
+                                <Separator />
                                 <MenuItem Header="Выйти" Click="LeaveConversationMenuItem_Click" />
                             </ContextMenu>
                         </ListView.ContextMenu>
