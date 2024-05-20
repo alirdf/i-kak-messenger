@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DOCUMENT Type="Advanced Installer" CreateVersion="21.7.1" version="21.7.1" PreviousModules="simple" Modules="professional" RootPath="." Language="en" Id="{AB200478-A29D-4C32-B1C8-CD9D18A29D36}">
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiPropsComponent">
+    <ROW Property="AI_BITMAP_DISPLAY_MODE" Value="0"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_EntityFramework.SqlServer.dll" Value="..\packages\EntityFramework.6.2.0\lib\net45"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_EntityFramework.dll" Value="..\packages\EntityFramework.6.2.0\lib\net45"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_MaterialDesignColors.dll" Value="..\packages\MaterialDesignColors.2.1.4\lib\net462"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_MaterialDesignThemes.Wpf.dll" Value="..\packages\MaterialDesignThemes.4.8.1\lib\net462"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_Microsoft.Xaml.Behaviors.dll" Value="..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.77\lib\net462"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_System.CodeDom.dll" Value="..\packages\System.CodeDom.8.0.0\lib\net462"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_WpfApp1.exe" Value="..\WpfApp1\bin\Debug"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_WpfApp1.exe.config" Value="..\WpfApp1\bin\Debug"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_WpfApp1.pdb" Value="..\WpfApp1\bin\Debug"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_EntityFramework.SqlServer.dll" Value="EntityFramework.SqlServer.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_EntityFramework.dll" Value="EntityFramework.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_MaterialDesignColors.dll" Value="MaterialDesignColors.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_MaterialDesignThemes.Wpf.dll" Value="MaterialDesignThemes.Wpf.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Microsoft.Xaml.Behaviors.dll" Value="Microsoft.Xaml.Behaviors.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_System.CodeDom.dll" Value="System.CodeDom.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_WpfApp1.exe" Value="WpfApp1.exe"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_WpfApp1.exe.config" Value="WpfApp1.exe.config"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_WpfApp1.pdb" Value="WpfApp1.pdb"/>
+    <ROW Property="ALLUSERS" Value="1"/>
+    <ROW Property="ARPCOMMENTS" Value="This installer database contains the logic and data required to install [|ProductName]." ValueLocId="*"/>
+    <ROW Property="ARPPRODUCTICON" Value="logoG.exe" Type="8"/>
+    <ROW Property="Manufacturer" Value="alircompilatop"/>
+    <ROW Property="ProductCode" Value="1033:{F9E0C64B-0AC0-41BD-A8DC-E6525F248809} " Type="16"/>
+    <ROW Property="ProductLanguage" Value="1033"/>
+    <ROW Property="ProductName" Value="ikakmessege"/>
+    <ROW Property="ProductVersion" Value="1.6.9" Options="32"/>
+    <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
+    <ROW Property="UpgradeCode" Value="{33AF9F07-744E-47B4-91DB-1C4F9F7E70A8}"/>
+    <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
+    <ROW Property="WindowsType9XDisplay" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT40" MultiBuildValue="DefaultBuild:Windows NT 4.0" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT40Display" MultiBuildValue="DefaultBuild:Windows NT 4.0" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT50" MultiBuildValue="DefaultBuild:Windows 2000" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT50Display" MultiBuildValue="DefaultBuild:Windows 2000" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT5X" MultiBuildValue="DefaultBuild:Windows XP/2003" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT5XDisplay" MultiBuildValue="DefaultBuild:Windows XP/2003" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT60" MultiBuildValue="DefaultBuild:Windows Vista/Server 2008" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT60Display" MultiBuildValue="DefaultBuild:Windows Vista/Server 2008" ValueLocId="-"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiDirsComponent">
+    <ROW Directory="APPDIR" Directory_Parent="TARGETDIR" DefaultDir="APPDIR:." IsPseudoRoot="1"/>
+    <ROW Directory="Assets" Directory_Parent="TARGETDIR" DefaultDir="Assets" IsPseudoRoot="1"/>
+    <ROW Directory="SHORTCUTDIR" Directory_Parent="TARGETDIR" DefaultDir="SHORTC~1|SHORTCUTDIR" IsPseudoRoot="1"/>
+    <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
+    <ROW Directory="message_Dir" Directory_Parent="APPDIR" DefaultDir="message"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.SideBySideGuidComponent">
+    <ROW Component="APPDIR" Value="{50E44840-B66C-4DC9-A57B-4F0E18C54EB0}"/>
+    <ROW Component="ProductInformation" Value="{2B70595B-0BA3-4DB9-BE88-D313A0118BD7}"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
+    <ROW Component="APPDIR" ComponentId="{50E44840-B66C-4DC9-A57B-4F0E18C54EB0}" Directory_="APPDIR" Attributes="0"/>
+    <ROW Component="ProductInformation" ComponentId="{2B70595B-0BA3-4DB9-BE88-D313A0118BD7}" Directory_="APPDIR" Attributes="4" KeyPath="Version"/>
+    <ROW Component="SHORTCUTDIR" ComponentId="{76F2BA25-6499-48F5-AAB7-B2B28F78685F}" Directory_="SHORTCUTDIR" Attributes="0"/>
+    <ROW Component="logoG.scale100.png" ComponentId="{27B28322-4253-4896-A82E-4D4ECE946E4D}" Directory_="Assets" Attributes="0" KeyPath="logoG.scale100.png" Type="0"/>
+    <ROW Component="message_PrimaryOutput" ComponentId="{C3165D04-6A17-4775-97E0-04985F665509}" Directory_="message_Dir" Attributes="0" KeyPath="WpfApp1.exe"/>
+    <ROW Component="message_References" ComponentId="{B9C4493D-D03B-4B44-BE31-36467319DFC7}" Directory_="message_Dir" Attributes="0" KeyPath="System.CodeDom.dll"/>
+    <ROW Component="message_SymbolsOutput" ComponentId="{B421AB98-2686-4A27-AA40-8D7C268791CA}" Directory_="message_Dir" Attributes="0" KeyPath="WpfApp1.pdb"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
+    <ROW Feature="AiAppXAssets" Title="AiAppXAssets" Description="Description" Display="3" Level="0" Directory_="APPDIR" Attributes="0" Options="271" Builds="BuildUwpAppX"/>
+    <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0"/>
+    <ATTRIBUTE name="CurrentFeature" value="MainFeature"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
+    <ROW File="WpfApp1.exe" Component_="message_PrimaryOutput" FileName="[|AI_PROPPATH_FILENAME_PERBUILD_WpfApp1.exe]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_WpfApp1.exe&gt;" SelfReg="false"/>
+    <ROW File="WpfApp1.exe.config" Component_="message_PrimaryOutput" FileName="WPFAPP~2.CON|[|AI_PROPPATH_FILENAME_PERBUILD_WpfApp1.exe.config]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_WpfApp1.exe.config&gt;" SelfReg="false"/>
+    <ROW File="EntityFramework.dll" Component_="message_References" FileName="ENTITY~2.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_EntityFramework.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_EntityFramework.dll&gt;" SelfReg="false"/>
+    <ROW File="EntityFramework.SqlServer.dll" Component_="message_References" FileName="ENTITY~3.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_EntityFramework.SqlServer.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_EntityFramework.SqlServer.dll&gt;" SelfReg="false"/>
+    <ROW File="MaterialDesignColors.dll" Component_="message_References" FileName="MATERI~2.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_MaterialDesignColors.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_MaterialDesignColors.dll&gt;" SelfReg="false"/>
+    <ROW File="MaterialDesignThemes.Wpf.dll" Component_="message_References" FileName="MATERI~3.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_MaterialDesignThemes.Wpf.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_MaterialDesignThemes.Wpf.dll&gt;" SelfReg="false"/>
+    <ROW File="Microsoft.Xaml.Behaviors.dll" Component_="message_References" FileName="MICROS~2.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Microsoft.Xaml.Behaviors.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Microsoft.Xaml.Behaviors.dll&gt;" SelfReg="false"/>
+    <ROW File="System.CodeDom.dll" Component_="message_References" FileName="SYSTEM~2.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_System.CodeDom.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_System.CodeDom.dll&gt;" SelfReg="false"/>
+    <ROW File="WpfApp1.pdb" Component_="message_SymbolsOutput" FileName="[|AI_PROPPATH_FILENAME_PERBUILD_WpfApp1.pdb]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_WpfApp1.pdb&gt;" SelfReg="false"/>
+    <ROW File="logoG.scale100.png" Component_="logoG.scale100.png" FileName="LOGOGS~1.PNG|logoG.scale-100.png" Attributes="0" SourcePath="Generated Assets\logoG.scale-100.png" SelfReg="false"/>
+    <ROW File="logoG.scale125.png" Component_="logoG.scale100.png" FileName="LOGOGS~2.PNG|logoG.scale-125.png" Attributes="0" SourcePath="Generated Assets\logoG.scale-125.png" SelfReg="false"/>
+    <ROW File="logoG.scale150.png" Component_="logoG.scale100.png" FileName="LOGOGS~3.PNG|logoG.scale-150.png" Attributes="0" SourcePath="Generated Assets\logoG.scale-150.png" SelfReg="false"/>
+    <ROW File="logoG.scale200.png" Component_="logoG.scale100.png" FileName="LOGOGS~4.PNG|logoG.scale-200.png" Attributes="0" SourcePath="Generated Assets\logoG.scale-200.png" SelfReg="false"/>
+    <ROW File="logoG.scale400.png" Component_="logoG.scale100.png" FileName="LOGOGS~5.PNG|logoG.scale-400.png" Attributes="0" SourcePath="Generated Assets\logoG.scale-400.png" SelfReg="false"/>
+    <ROW File="WpfApp1Square71x71Logo.scale100.png" Component_="logoG.scale100.png" FileName="WPFAPP~1.PNG|WpfApp1Square71x71Logo.scale-100.png" Attributes="0" SourcePath="Generated Assets\WpfApp1Square71x71Logo.scale-100.png" SelfReg="false"/>
+    <ROW File="WpfApp1Square71x71Logo.scale125.png" Component_="logoG.scale100.png" FileName="WPFAPP~2.PNG|WpfApp1Square71x71Logo.scale-125.png" Attributes="0" SourcePath="Generated Assets\WpfApp1Square71x71Logo.scale-125.png" SelfReg="false"/>
+    <ROW File="WpfApp1Square71x71Logo.scale150.png" Component_="logoG.scale100.png" FileName="WPFAPP~3.PNG|WpfApp1Square71x71Logo.scale-150.png" Attributes="0" SourcePath="Generated Assets\WpfApp1Square71x71Logo.scale-150.png" SelfReg="false"/>
+    <ROW File="WpfApp1Square71x71Logo.scale200.png" Component_="logoG.scale100.png" FileName="WPFAPP~4.PNG|WpfApp1Square71x71Logo.scale-200.png" Attributes="0" SourcePath="Generated Assets\WpfApp1Square71x71Logo.scale-200.png" SelfReg="false"/>
+    <ROW File="WpfApp1Square71x71Logo.scale400.png" Component_="logoG.scale100.png" FileName="WPFAPP~5.PNG|WpfApp1Square71x71Logo.scale-400.png" Attributes="0" SourcePath="Generated Assets\WpfApp1Square71x71Logo.scale-400.png" SelfReg="false"/>
+    <ROW File="WpfApp1Square150x150Logo.scale100.png" Component_="logoG.scale100.png" FileName="WPFAPP~6.PNG|WpfApp1Square150x150Logo.scale-100.png" Attributes="0" SourcePath="Generated Assets\WpfApp1Square150x150Logo.scale-100.png" SelfReg="false"/>
+    <ROW File="WpfApp1Square150x150Logo.scale125.png" Component_="logoG.scale100.png" FileName="WPFAPP~7.PNG|WpfApp1Square150x150Logo.scale-125.png" Attributes="0" SourcePath="Generated Assets\WpfApp1Square150x150Logo.scale-125.png" SelfReg="false"/>
+    <ROW File="WpfApp1Square150x150Logo.scale150.png" Component_="logoG.scale100.png" FileName="WPFAPP~8.PNG|WpfApp1Square150x150Logo.scale-150.png" Attributes="0" SourcePath="Generated Assets\WpfApp1Square150x150Logo.scale-150.png" SelfReg="false"/>
+    <ROW File="WpfApp1Square150x150Logo.scale200.png" Component_="logoG.scale100.png" FileName="WPFAPP~9.PNG|WpfApp1Square150x150Logo.scale-200.png" Attributes="0" SourcePath="Generated Assets\WpfApp1Square150x150Logo.scale-200.png" SelfReg="false"/>
+    <ROW File="WpfApp1Square150x150Logo.scale400.png" Component_="logoG.scale100.png" FileName="WPFAP~10.PNG|WpfApp1Square150x150Logo.scale-400.png" Attributes="0" SourcePath="Generated Assets\WpfApp1Square150x150Logo.scale-400.png" SelfReg="false"/>
+    <ROW File="WpfApp1Wide310x150Logo.scale100.png" Component_="logoG.scale100.png" FileName="WPFAP~11.PNG|WpfApp1Wide310x150Logo.scale-100.png" Attributes="0" SourcePath="Generated Assets\WpfApp1Wide310x150Logo.scale-100.png" SelfReg="false"/>
+    <ROW File="WpfApp1Wide310x150Logo.scale125.png" Component_="logoG.scale100.png" FileName="WPFAP~12.PNG|WpfApp1Wide310x150Logo.scale-125.png" Attributes="0" SourcePath="Generated Assets\WpfApp1Wide310x150Logo.scale-125.png" SelfReg="false"/>
+    <ROW File="WpfApp1Wide310x150Logo.scale150.png" Component_="logoG.scale100.png" FileName="WPFAP~13.PNG|WpfApp1Wide310x150Logo.scale-150.png" Attributes="0" SourcePath="Generated Assets\WpfApp1Wide310x150Logo.scale-150.png" SelfReg="false"/>
+    <ROW File="WpfApp1Wide310x150Logo.scale200.png" Component_="logoG.scale100.png" FileName="WPFAP~14.PNG|WpfApp1Wide310x150Logo.scale-200.png" Attributes="0" SourcePath="Generated Assets\WpfApp1Wide310x150Logo.scale-200.png" SelfReg="false"/>
+    <ROW File="WpfApp1Wide310x150Logo.scale400.png" Component_="logoG.scale100.png" FileName="WPFAP~15.PNG|WpfApp1Wide310x150Logo.scale-400.png" Attributes="0" SourcePath="Generated Assets\WpfApp1Wide310x150Logo.scale-400.png" SelfReg="false"/>
+    <ROW File="WpfApp1Square310x310Logo.scale100.png" Component_="logoG.scale100.png" FileName="WPFAP~16.PNG|WpfApp1Square310x310Logo.scale-100.png" Attributes="0" SourcePath="Generated Assets\WpfApp1Square310x310Logo.scale-100.png" SelfReg="false"/>
+    <ROW File="WpfApp1Square310x310Logo.scale125.png" Component_="logoG.scale100.png" FileName="WPFAP~17.PNG|WpfApp1Square310x310Logo.scale-125.png" Attributes="0" SourcePath="Generated Assets\WpfApp1Square310x310Logo.scale-125.png" SelfReg="false"/>
+    <ROW File="WpfApp1Square310x310Logo.scale150.png" Component_="logoG.scale100.png" FileName="WPFAP~18.PNG|WpfApp1Square310x310Logo.scale-150.png" Attributes="0" SourcePath="Generated Assets\WpfApp1Square310x310Logo.scale-150.png" SelfReg="false"/>
+    <ROW File="WpfApp1Square310x310Logo.scale200.png" Component_="logoG.scale100.png" FileName="WPFAP~19.PNG|WpfApp1Square310x310Logo.scale-200.png" Attributes="0" SourcePath="Generated Assets\WpfApp1Square310x310Logo.scale-200.png" SelfReg="false"/>
+    <ROW File="WpfApp1Square310x310Logo.scale400.png" Component_="logoG.scale100.png" FileName="WPFAP~20.PNG|WpfApp1Square310x310Logo.scale-400.png" Attributes="0" SourcePath="Generated Assets\WpfApp1Square310x310Logo.scale-400.png" SelfReg="false"/>
+    <ROW File="WpfApp1Square44x44Logo.scale100.png" Component_="logoG.scale100.png" FileName="WPFAP~21.PNG|WpfApp1Square44x44Logo.scale-100.png" Attributes="0" SourcePath="Generated Assets\WpfApp1Square44x44Logo.scale-100.png" SelfReg="false"/>
+    <ROW File="WpfApp1Square44x44Logo.targetsize16.png" Component_="logoG.scale100.png" FileName="WPFAP~22.PNG|WpfApp1Square44x44Logo.targetsize-16.png" Attributes="0" SourcePath="Generated Assets\WpfApp1Square44x44Logo.targetsize-16.png" SelfReg="false"/>
+    <ROW File="WpfApp1Square44x44Logo.targetsize16_altformunplated.png" Component_="logoG.scale100.png" FileName="WPFAP~23.PNG|WpfApp1Square44x44Logo.targetsize-16_altform-unplated.png" Attributes="0" SourcePath="Generated Assets\WpfApp1Square44x44Logo.targetsize-16_altform-unplated.png" SelfReg="false"/>
+    <ROW File="WpfApp1Square44x44Logo.targetsize16_altformlightunplated.png" Component_="logoG.scale100.png" FileName="WPFAP~24.PNG|WpfApp1Square44x44Logo.targetsize-16_altform-lightunplated.png" Attributes="0" SourcePath="Generated Assets\WpfApp1Square44x44Logo.targetsize-16_altform-lightunplated.png" SelfReg="false"/>
+    <ROW File="WpfApp1Square44x44Logo.scale125.png" Component_="logoG.scale100.png" FileName="WPFAP~25.PNG|WpfApp1Square44x44Logo.scale-125.png" Attributes="0" SourcePath="Generated Assets\WpfApp1Square44x44Logo.scale-125.png" SelfReg="false"/>
+    <ROW File="WpfApp1Square44x44Logo.targetsize24.png" Component_="logoG.scale100.png" FileName="WPFAP~26.PNG|WpfApp1Square44x44Logo.targetsize-24.png" Attributes="0" SourcePath="Generated Assets\WpfApp1Square44x44Logo.targetsize-24.png" SelfReg="false"/>
+    <ROW File="WpfApp1Square44x44Logo.targetsize24_altformunplated.png" Component_="logoG.scale100.png" FileName="WPFAP~27.PNG|WpfApp1Square44x44Logo.targetsize-24_altform-unplated.png" Attributes="0" SourcePath="Generated Assets\WpfApp1Square44x44Logo.targetsize-24_altform-unplated.png" SelfReg="false"/>
+    <ROW File="WpfApp1Square44x44Logo.targetsize24_altformlightunplated.png" Component_="logoG.scale100.png" FileName="WPFAP~28.PNG|WpfApp1Square44x44Logo.targetsize-24_altform-lightunplated.png" Attributes="0" SourcePath="Generated Assets\WpfApp1Square44x44Logo.targetsize-24_altform-lightunplated.png" SelfReg="false"/>
+    <ROW File="WpfApp1Square44x44Logo.scale150.png" Component_="logoG.scale100.png" FileName="WPFAP~29.PNG|WpfApp1Square44x44Logo.scale-150.png" Attributes="0" SourcePath="Generated Assets\WpfApp1Square44x44Logo.scale-150.png" SelfReg="false"/>
+    <ROW File="WpfApp1Square44x44Logo.targetsize32.png" Component_="logoG.scale100.png" FileName="WPFAP~30.PNG|WpfApp1Square44x44Logo.targetsize-32.png" Attributes="0" SourcePath="Generated Assets\WpfApp1Square44x44Logo.targetsize-32.png" SelfReg="false"/>
+    <ROW File="WpfApp1Square44x44Logo.targetsize32_altformunplated.png" Component_="logoG.scale100.png" FileName="WPFAP~31.PNG|WpfApp1Square44x44Logo.targetsize-32_altform-unplated.png" Attributes="0" SourcePath="Generated Assets\WpfApp1Square44x44Logo.targetsize-32_altform-unplated.png" SelfReg="false"/>
+    <ROW File="WpfApp1Square44x44Logo.targetsize32_altformlightunplated.png" Component_="logoG.scale100.png" FileName="WPFAP~32.PNG|WpfApp1Square44x44Logo.targetsize-32_altform-lightunplated.png" Attributes="0" SourcePath="Generated Assets\WpfApp1Square44x44Logo.targetsize-32_altform-lightunplated.png" SelfReg="false"/>
+    <ROW File="WpfApp1Square44x44Logo.scale200.png" Component_="logoG.scale100.png" FileName="WPFAP~33.PNG|WpfApp1Square44x44Logo.scale-200.png" Attributes="0" SourcePath="Generated Assets\WpfApp1Square44x44Logo.scale-200.png" SelfReg="false"/>
+    <ROW File="WpfApp1Square44x44Logo.targetsize48.png" Component_="logoG.scale100.png" FileName="WPFAP~34.PNG|WpfApp1Square44x44Logo.targetsize-48.png" Attributes="0" SourcePath="Generated Assets\WpfApp1Square44x44Logo.targetsize-48.png" SelfReg="false"/>
+    <ROW File="WpfApp1Square44x44Logo.targetsize48_altformunplated.png" Component_="logoG.scale100.png" FileName="WPFAP~35.PNG|WpfApp1Square44x44Logo.targetsize-48_altform-unplated.png" Attributes="0" SourcePath="Generated Assets\WpfApp1Square44x44Logo.targetsize-48_altform-unplated.png" SelfReg="false"/>
+    <ROW File="WpfApp1Square44x44Logo.targetsize48_altformlightunplated.png" Component_="logoG.scale100.png" FileName="WPFAP~36.PNG|WpfApp1Square44x44Logo.targetsize-48_altform-lightunplated.png" Attributes="0" SourcePath="Generated Assets\WpfApp1Square44x44Logo.targetsize-48_altform-lightunplated.png" SelfReg="false"/>
+    <ROW File="WpfApp1Square44x44Logo.scale400.png" Component_="logoG.scale100.png" FileName="WPFAP~37.PNG|WpfApp1Square44x44Logo.scale-400.png" Attributes="0" SourcePath="Generated Assets\WpfApp1Square44x44Logo.scale-400.png" SelfReg="false"/>
+    <ROW File="WpfApp1Square44x44Logo.targetsize256.png" Component_="logoG.scale100.png" FileName="WPFAP~38.PNG|WpfApp1Square44x44Logo.targetsize-256.png" Attributes="0" SourcePath="Generated Assets\WpfApp1Square44x44Logo.targetsize-256.png" SelfReg="false"/>
+    <ROW File="WpfApp1Square44x44Logo.targetsize256_altformunplated.png" Component_="logoG.scale100.png" FileName="WPFAP~39.PNG|WpfApp1Square44x44Logo.targetsize-256_altform-unplated.png" Attributes="0" SourcePath="Generated Assets\WpfApp1Square44x44Logo.targetsize-256_altform-unplated.png" SelfReg="false"/>
+    <ROW File="WpfApp1Square44x44Logo.targetsize256_altformlightunplated.png" Component_="logoG.scale100.png" FileName="WPFAP~40.PNG|WpfApp1Square44x44Logo.targetsize-256_altform-lightunplated.png" Attributes="0" SourcePath="Generated Assets\WpfApp1Square44x44Logo.targetsize-256_altform-lightunplated.png" SelfReg="false"/>
+    <ROW File="WpfApp1SplashScreen.scale100.png" Component_="logoG.scale100.png" FileName="WPFAP~41.PNG|WpfApp1SplashScreen.scale-100.png" Attributes="0" SourcePath="Generated Assets\WpfApp1SplashScreen.scale-100.png" SelfReg="false"/>
+    <ROW File="WpfApp1SplashScreen.scale125.png" Component_="logoG.scale100.png" FileName="WPFAP~42.PNG|WpfApp1SplashScreen.scale-125.png" Attributes="0" SourcePath="Generated Assets\WpfApp1SplashScreen.scale-125.png" SelfReg="false"/>
+    <ROW File="WpfApp1SplashScreen.scale150.png" Component_="logoG.scale100.png" FileName="WPFAP~43.PNG|WpfApp1SplashScreen.scale-150.png" Attributes="0" SourcePath="Generated Assets\WpfApp1SplashScreen.scale-150.png" SelfReg="false"/>
+    <ROW File="WpfApp1SplashScreen.scale200.png" Component_="logoG.scale100.png" FileName="WPFAP~44.PNG|WpfApp1SplashScreen.scale-200.png" Attributes="0" SourcePath="Generated Assets\WpfApp1SplashScreen.scale-200.png" SelfReg="false"/>
+    <ROW File="WpfApp1SplashScreen.scale400.png" Component_="logoG.scale100.png" FileName="WPFAP~45.PNG|WpfApp1SplashScreen.scale-400.png" Attributes="0" SourcePath="Generated Assets\WpfApp1SplashScreen.scale-400.png" SelfReg="false"/>
+    <ROW File="WpfApp1BadgeLogo.scale100.png" Component_="logoG.scale100.png" FileName="WPFAP~46.PNG|WpfApp1BadgeLogo.scale-100.png" Attributes="0" SourcePath="Generated Assets\WpfApp1BadgeLogo.scale-100.png" SelfReg="false"/>
+    <ROW File="WpfApp1BadgeLogo.scale125.png" Component_="logoG.scale100.png" FileName="WPFAP~47.PNG|WpfApp1BadgeLogo.scale-125.png" Attributes="0" SourcePath="Generated Assets\WpfApp1BadgeLogo.scale-125.png" SelfReg="false"/>
+    <ROW File="WpfApp1BadgeLogo.scale150.png" Component_="logoG.scale100.png" FileName="WPFAP~48.PNG|WpfApp1BadgeLogo.scale-150.png" Attributes="0" SourcePath="Generated Assets\WpfApp1BadgeLogo.scale-150.png" SelfReg="false"/>
+    <ROW File="WpfApp1BadgeLogo.scale200.png" Component_="logoG.scale100.png" FileName="WPFAP~49.PNG|WpfApp1BadgeLogo.scale-200.png" Attributes="0" SourcePath="Generated Assets\WpfApp1BadgeLogo.scale-200.png" SelfReg="false"/>
+    <ROW File="WpfApp1BadgeLogo.scale400.png" Component_="logoG.scale100.png" FileName="WPFAP~50.PNG|WpfApp1BadgeLogo.scale-400.png" Attributes="0" SourcePath="Generated Assets\WpfApp1BadgeLogo.scale-400.png" SelfReg="false"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.AppPathsComponent">
+    <ROW Name="AI_APPPATH_PERBUILD_EntityFramework.SqlServer.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_EntityFramework.SqlServer.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_EntityFramework.SqlServer.dll]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_EntityFramework.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_EntityFramework.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_EntityFramework.dll]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_MaterialDesignColors.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_MaterialDesignColors.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_MaterialDesignColors.dll]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_MaterialDesignThemes.Wpf.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_MaterialDesignThemes.Wpf.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_MaterialDesignThemes.Wpf.dll]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_Microsoft.Xaml.Behaviors.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_Microsoft.Xaml.Behaviors.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_Microsoft.Xaml.Behaviors.dll]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_System.CodeDom.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_System.CodeDom.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_System.CodeDom.dll]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_WpfApp1.exe" Path="[|AI_PROPPATH_DIR_PERBUILD_WpfApp1.exe]\[|AI_PROPPATH_FILENAME_PERBUILD_WpfApp1.exe]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_WpfApp1.exe.config" Path="[|AI_PROPPATH_DIR_PERBUILD_WpfApp1.exe.config]\[|AI_PROPPATH_FILENAME_PERBUILD_WpfApp1.exe.config]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_WpfApp1.pdb" Path="[|AI_PROPPATH_DIR_PERBUILD_WpfApp1.pdb]\[|AI_PROPPATH_FILENAME_PERBUILD_WpfApp1.pdb]" Type="2" Content="0"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.AppXCfgComponent">
+    <ROW ID="Configuration" Order="1" ManifestFile="AppxManifest.xml" TargetOs="4" AutoUpdatesFrequency="0" AutoUpdatesOptions="0" ManifestBundleFile="AppxBundleManifest.xml"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.BootstrOptComponent">
+    <ROW BootstrOptKey="GlobalOptions" DownloadFolder="[AppDataFolder][|Manufacturer]\[|ProductName]\prerequisites" Options="2"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
+    <ROW BuildKey="BuildUwpAppX" BuildName="BuildUwpAppX" BuildOrder="2" BuildType="7" PackageFolder="ikakmesg-BuildUwpAppX-SetupFiles" PackageFileName="ikakmesg" Languages="en" UwpTargetDesktop="TargetDeviceFamily" UwpAppInstallerManifestFile="MsixAppInstallerData.xml"/>
+    <ROW BuildKey="BuildUwpAppXSubBuild" BuildName="x64" BuildOrder="3" BuildType="8" ParentBuild="BuildUwpAppX"/>
+    <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="0" Languages="en" InstallationType="4" UseLargeSchema="true"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.DictionaryComponent">
+    <ROW Path="&lt;AI_DICTS&gt;ui.ail"/>
+    <ROW Path="&lt;AI_DICTS&gt;ui_en.ail"/>
+    <ATTRIBUTE name="TranslateSegments" value="0b00000000000000000000000000000000000000000000000000000000000000000110000000000000000000000000000000000000000000000000000000000000"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.FragmentComponent">
+    <ROW Fragment="CommonUI.aip" Path="&lt;AI_FRAGS&gt;CommonUI.aip"/>
+    <ROW Fragment="FolderDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\FolderDlg.aip"/>
+    <ROW Fragment="MaintenanceTypeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\MaintenanceTypeDlg.aip"/>
+    <ROW Fragment="MaintenanceWelcomeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\MaintenanceWelcomeDlg.aip"/>
+    <ROW Fragment="SequenceDialogs.aip" Path="&lt;AI_THEMES&gt;classic\fragments\SequenceDialogs.aip"/>
+    <ROW Fragment="Sequences.aip" Path="&lt;AI_FRAGS&gt;Sequences.aip"/>
+    <ROW Fragment="StaticUIStrings.aip" Path="&lt;AI_FRAGS&gt;StaticUIStrings.aip"/>
+    <ROW Fragment="Themes.aip" Path="&lt;AI_FRAGS&gt;Themes.aip"/>
+    <ROW Fragment="UI.aip" Path="&lt;AI_THEMES&gt;classic\fragments\UI.aip"/>
+    <ROW Fragment="Validation.aip" Path="&lt;AI_FRAGS&gt;Validation.aip"/>
+    <ROW Fragment="VerifyRemoveDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\VerifyRemoveDlg.aip"/>
+    <ROW Fragment="VerifyRepairDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\VerifyRepairDlg.aip"/>
+    <ROW Fragment="WelcomeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\WelcomeDlg.aip"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.GenericXmlAttributeComponent">
+    <ROW XmlAttribute="Alias" XmlElement="ExecutionAlias" Name="Alias" Flags="0" Order="0" Value="WpfApp1.exe"/>
+    <ROW XmlAttribute="BackgroundColor" XmlElement="VisualElements" Name="BackgroundColor" Flags="0" Order="0" Value="transparent"/>
+    <ROW XmlAttribute="BadgeLogo" XmlElement="LockScreen" Name="BadgeLogo" Flags="0" Order="0" FileId="WpfApp1BadgeLogo.scale100.png"/>
+    <ROW XmlAttribute="Category" XmlElement="Extension" Name="Category" Flags="0" Order="0" Value="windows.appExecutionAlias"/>
+    <ROW XmlAttribute="Category_1" XmlElement="Extension_1" Name="Category" Flags="0" Order="0" Value="windows.desktopAppMigration"/>
+    <ROW XmlAttribute="Description" XmlElement="VisualElements" Name="Description" Flags="0" Order="0" Value="WpfApp1"/>
+    <ROW XmlAttribute="DisplayName" XmlElement="VisualElements" Name="DisplayName" Flags="0" Order="0" Value="WpfApp1"/>
+    <ROW XmlAttribute="EntryPoint" XmlElement="Application" Name="EntryPoint" Flags="0" Order="0" Value="Windows.FullTrustApplication"/>
+    <ROW XmlAttribute="EntryPoint_1" XmlElement="Extension_1" Name="EntryPoint" Flags="0" Order="0" Value="Windows.FullTrustApplication"/>
+    <ROW XmlAttribute="Executable" XmlElement="Application" Name="Executable" Flags="0" Order="0" FileId="WpfApp1.exe"/>
+    <ROW XmlAttribute="Executable_1" XmlElement="Extension_1" Name="Executable" Flags="0" Order="0" FileId="WpfApp1.exe"/>
+    <ROW XmlAttribute="Id" XmlElement="Application" Name="Id" Flags="0" Order="0" Value="WpfApp1"/>
+    <ROW XmlAttribute="IgnorableNamespaces" XmlElement="AppInstallerUX" Name="IgnorableNamespaces" Flags="0" Order="0" Value="ux ux2"/>
+    <ROW XmlAttribute="Image" XmlElement="SplashScreen" Name="Image" Flags="0" Order="0" FileId="WpfApp1SplashScreen.scale100.png"/>
+    <ROW XmlAttribute="Language" XmlElement="Resource" Name="Language" Flags="0" Order="0" Value="en-US"/>
+    <ROW XmlAttribute="MaxVersionTested" XmlElement="TargetDeviceFamily" Name="MaxVersionTested" Flags="0" Order="0" Value="10.0.22631.0"/>
+    <ROW XmlAttribute="MinVersion" XmlElement="TargetDeviceFamily" Name="MinVersion" Flags="0" Order="0" Value="10.0.17763.0"/>
+    <ROW XmlAttribute="Name" XmlElement="Identity" Name="Name" Flags="0" Order="0" Value="alircompilatop.ikakmessege"/>
+    <ROW XmlAttribute="Name_1" XmlElement="Capability" Name="Name" Flags="0" Order="0" Value="runFullTrust"/>
+    <ROW XmlAttribute="Name_2" XmlElement="TargetDeviceFamily" Name="Name" Flags="0" Order="0" Value="Windows.Desktop"/>
+    <ROW XmlAttribute="Notification" XmlElement="LockScreen" Name="Notification" Flags="0" Order="0" Value="badge"/>
+    <ROW XmlAttribute="Preference" XmlElement="Rotation" Name="Preference" Flags="0" Order="0" Value="portrait"/>
+    <ROW XmlAttribute="Preference_1" XmlElement="Rotation_1" Name="Preference" Flags="0" Order="0" Value="landscape"/>
+    <ROW XmlAttribute="ProcessorArchitecture" XmlElement="Identity" Name="ProcessorArchitecture" Flags="0" Order="0" Value="x64"/>
+    <ROW XmlAttribute="Publisher" XmlElement="Identity" Name="Publisher" Flags="0" Order="0" Value="CN=alircompilatop"/>
+    <ROW XmlAttribute="ShortcutPath" XmlElement="DesktopApp" Name="ShortcutPath" Flags="0" Order="0" Value="%APPDATA%\Microsoft\Windows\Start Menu\Programs\ikakmessege\WpfApp1.lnk"/>
+    <ROW XmlAttribute="ShortcutPath_1" XmlElement="DesktopApp_1" Name="ShortcutPath" Flags="0" Order="0" Value="%PROGRAMDATA%\Microsoft\Windows\Start Menu\Programs\ikakmessege\WpfApp1.lnk"/>
+    <ROW XmlAttribute="Square150x150Logo" XmlElement="VisualElements" Name="Square150x150Logo" Flags="0" Order="0" FileId="WpfApp1Square150x150Logo.scale100.png"/>
+    <ROW XmlAttribute="Square310x310Logo" XmlElement="DefaultTile" Name="Square310x310Logo" Flags="0" Order="0" FileId="WpfApp1Square310x310Logo.scale100.png"/>
+    <ROW XmlAttribute="Square44x44Logo" XmlElement="VisualElements" Name="Square44x44Logo" Flags="0" Order="0" FileId="WpfApp1Square44x44Logo.scale100.png"/>
+    <ROW XmlAttribute="Square71x71Logo" XmlElement="DefaultTile" Name="Square71x71Logo" Flags="0" Order="0" FileId="WpfApp1Square71x71Logo.scale100.png"/>
+    <ROW XmlAttribute="Version" XmlElement="Identity" Name="Version" Flags="0" Order="0" Value="1.6.9.0"/>
+    <ROW XmlAttribute="Version_1" XmlElement="AppInstallerUX" Name="Version" Flags="0" Order="0" Value="1.0.0"/>
+    <ROW XmlAttribute="Wide310x150Logo" XmlElement="DefaultTile" Name="Wide310x150Logo" Flags="0" Order="0" FileId="WpfApp1Wide310x150Logo.scale100.png"/>
+    <ROW XmlAttribute="xmlns" XmlElement="AppInstallerUX" Name="xmlns" Flags="0" Order="0" Value="http://schemas.microsoft.com/msix/appinstallerux"/>
+    <ROW XmlAttribute="xmlnsux" XmlElement="AppInstallerUX" Name="xmlns:ux" Flags="0" Order="0" Value="http://schemas.microsoft.com/msix/appinstallerux"/>
+    <ROW XmlAttribute="xmlnsux2" XmlElement="AppInstallerUX" Name="xmlns:ux2" Flags="0" Order="0" Value="http://schemas.microsoft.com/msix/appinstallerux"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.GenericXmlElementComponent">
+    <ROW XmlElement="AppExecutionAlias" ParentElement="Extension" Name="AppExecutionAlias" Order="1" Flags="0" Type="0"/>
+    <ROW XmlElement="AppInstallerUX" Name="AppInstallerUX" Order="0" Flags="0" Type="0"/>
+    <ROW XmlElement="Application" ParentElement="Applications" Name="Application" Order="0" Flags="0" Type="4"/>
+    <ROW XmlElement="Applications" ParentElement="Package" Name="Applications" Order="4" Flags="0" Type="3"/>
+    <ROW XmlElement="Bundle" Name="Bundle" Order="0" Flags="0" Type="0"/>
+    <ROW XmlElement="Capabilities" ParentElement="Package" Name="Capabilities" Order="5" Flags="0" Type="0"/>
+    <ROW XmlElement="Capability" ParentElement="Capabilities" Name="Capability" Order="0" Flags="0" Type="0"/>
+    <ROW XmlElement="DefaultTile" ParentElement="VisualElements" Name="DefaultTile" Order="2" Flags="0" Type="0"/>
+    <ROW XmlElement="Dependencies" ParentElement="Package" Name="Dependencies" Order="6" Flags="0" Type="0"/>
+    <ROW XmlElement="DesktopApp" ParentElement="DesktopAppMigration" Name="DesktopApp" Order="1" Flags="0" Type="0"/>
+    <ROW XmlElement="DesktopAppMigration" ParentElement="Extension_1" Name="DesktopAppMigration" Order="1" Flags="0" Type="0"/>
+    <ROW XmlElement="DesktopApp_1" ParentElement="DesktopAppMigration" Name="DesktopApp" Order="2" Flags="0" Type="0"/>
+    <ROW XmlElement="DisplayName" ParentElement="Properties" Name="DisplayName" Order="2" Flags="0" Text="ikakmessege" Type="0"/>
+    <ROW XmlElement="ExecutionAlias" ParentElement="AppExecutionAlias" Name="ExecutionAlias" Order="1" Flags="0" Type="0"/>
+    <ROW XmlElement="Extension" ParentElement="Extensions" Name="Extension" Order="1" Flags="0" Type="54"/>
+    <ROW XmlElement="Extension_1" ParentElement="Extensions" Name="Extension" Order="2" Flags="0" Type="55"/>
+    <ROW XmlElement="Extensions" ParentElement="Application" Name="Extensions" Order="2" Flags="0" Type="0"/>
+    <ROW XmlElement="Identity" ParentElement="Package" Name="Identity" Order="1" Flags="0" Type="0"/>
+    <ROW XmlElement="InitialRotationPreference" ParentElement="VisualElements" Name="InitialRotationPreference" Order="1" Flags="0" Type="0"/>
+    <ROW XmlElement="LockScreen" ParentElement="VisualElements" Name="LockScreen" Order="4" Flags="0" Type="0"/>
+    <ROW XmlElement="Logo" ParentElement="Properties" Name="Logo" Order="3" Flags="0" FileId="logoG.scale100.png" Type="0"/>
+    <ROW XmlElement="Package" Name="Package" Order="0" Flags="0" Type="6"/>
+    <ROW XmlElement="Properties" ParentElement="Package" Name="Properties" Order="3" Flags="0" Type="0"/>
+    <ROW XmlElement="PublisherDisplayName" ParentElement="Properties" Name="PublisherDisplayName" Order="1" Flags="0" Text="alircompilatop" Type="0"/>
+    <ROW XmlElement="Resource" ParentElement="Resources" Name="Resource" Order="1" Flags="0" Type="0"/>
+    <ROW XmlElement="Resources" ParentElement="Package" Name="Resources" Order="2" Flags="0" Type="0"/>
+    <ROW XmlElement="Rotation" ParentElement="InitialRotationPreference" Name="Rotation" Order="1" Flags="0" Type="0"/>
+    <ROW XmlElement="Rotation_1" ParentElement="InitialRotationPreference" Name="Rotation" Order="2" Flags="0" Type="0"/>
+    <ROW XmlElement="SplashScreen" ParentElement="VisualElements" Name="SplashScreen" Order="3" Flags="0" Type="0"/>
+    <ROW XmlElement="TargetDeviceFamily" ParentElement="Dependencies" Name="TargetDeviceFamily" Order="0" Flags="0" Type="28"/>
+    <ROW XmlElement="VisualElements" ParentElement="Application" Name="VisualElements" Order="1" Flags="0" Type="0"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.GenericXmlFileComponent">
+    <ROW XmlFile="AppxBundleManifest.xml" FileName="AppxBundleManifest.xml" RootElement="Bundle" Flags="89" Version="1.0" Encoding="UTF-8" IndentUnits="2"/>
+    <ROW XmlFile="AppxManifest.xml" FileName="AppxManifest.xml" RootElement="Package" Flags="89" Version="1.0" Encoding="UTF-8" IndentUnits="2"/>
+    <ROW XmlFile="MsixAppInstallerData.xml" FileName="MsixAppInstallerData.xml" RootElement="AppInstallerUX" Flags="89" Version="1.0" Encoding="UTF-8" IndentUnits="2"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiBinaryComponent">
+    <ROW Name="aicustact.dll" SourcePath="&lt;AI_CUSTACTS&gt;aicustact.dll"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiControlEventComponent">
+    <ROW Dialog_="WelcomeDlg" Control_="Next" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="FolderDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_INSTALL" Ordering="201"/>
+    <ROW Dialog_="FolderDlg" Control_="Back" Event="NewDialog" Argument="WelcomeDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="MaintenanceWelcomeDlg" Control_="Next" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT" Ordering="99"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_MAINT" Ordering="198"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="CustomizeDlg" Condition="AI_MAINT" Ordering="202"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_INSTALL" Ordering="197"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL" Ordering="201"/>
+    <ROW Dialog_="CustomizeDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_MAINT" Ordering="101"/>
+    <ROW Dialog_="CustomizeDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT" Ordering="1"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="ChangeButton" Event="NewDialog" Argument="CustomizeDlg" Condition="AI_MAINT" Ordering="501"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceWelcomeDlg" Condition="AI_MAINT" Ordering="1"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="RemoveButton" Event="NewDialog" Argument="VerifyRemoveDlg" Condition="AI_MAINT AND InstallMode=&quot;Remove&quot;" Ordering="601"/>
+    <ROW Dialog_="VerifyRemoveDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT AND InstallMode=&quot;Remove&quot;" Ordering="1"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="RepairButton" Event="NewDialog" Argument="VerifyRepairDlg" Condition="AI_MAINT AND InstallMode=&quot;Repair&quot;" Ordering="601"/>
+    <ROW Dialog_="VerifyRepairDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT AND InstallMode=&quot;Repair&quot;" Ordering="1"/>
+    <ROW Dialog_="VerifyRepairDlg" Control_="Repair" Event="EndDialog" Argument="Return" Condition="AI_MAINT AND InstallMode=&quot;Repair&quot;" Ordering="399" Options="1"/>
+    <ROW Dialog_="VerifyRemoveDlg" Control_="Remove" Event="EndDialog" Argument="Return" Condition="AI_MAINT AND InstallMode=&quot;Remove&quot;" Ordering="299" Options="1"/>
+    <ROW Dialog_="PatchWelcomeDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_PATCH" Ordering="201"/>
+    <ROW Dialog_="ResumeDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_RESUME" Ordering="299"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_PATCH" Ordering="199"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="PatchWelcomeDlg" Condition="AI_PATCH" Ordering="203"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiCreateFolderComponent">
+    <ROW Directory_="APPDIR" Component_="APPDIR" ManualDelete="true"/>
+    <ROW Directory_="SHORTCUTDIR" Component_="SHORTCUTDIR" ManualDelete="false"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
+    <ROW Action="AI_DOWNGRADE" Type="19" Target="4010"/>
+    <ROW Action="AI_DpiContentScale" Type="1" Source="aicustact.dll" Target="DpiContentScale"/>
+    <ROW Action="AI_EnableDebugLog" Type="321" Source="aicustact.dll" Target="EnableDebugLog"/>
+    <ROW Action="AI_InstallModeCheck" Type="1" Source="aicustact.dll" Target="UpdateInstallMode" WithoutSeq="true"/>
+    <ROW Action="AI_PREPARE_UPGRADE" Type="65" Source="aicustact.dll" Target="PrepareUpgrade"/>
+    <ROW Action="AI_PRESERVE_INSTALL_TYPE" Type="65" Source="aicustact.dll" Target="PreserveInstallType"/>
+    <ROW Action="AI_RESTORE_LOCATION" Type="65" Source="aicustact.dll" Target="RestoreLocation"/>
+    <ROW Action="AI_ResolveKnownFolders" Type="1" Source="aicustact.dll" Target="AI_ResolveKnownFolders"/>
+    <ROW Action="AI_SHOW_LOG" Type="65" Source="aicustact.dll" Target="LaunchLogFile" WithoutSeq="true"/>
+    <ROW Action="AI_STORE_LOCATION" Type="51" Source="ARPINSTALLLOCATION" Target="[APPDIR]"/>
+    <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]" MultiBuildTarget="BuildUwpAppX:"/>
+    <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][ProductName]"/>
+    <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatCompsComponent">
+    <ROW Feature_="MainFeature" Component_="APPDIR"/>
+    <ROW Feature_="MainFeature" Component_="ProductInformation"/>
+    <ROW Feature_="MainFeature" Component_="message_PrimaryOutput"/>
+    <ROW Feature_="MainFeature" Component_="SHORTCUTDIR"/>
+    <ROW Feature_="MainFeature" Component_="message_References"/>
+    <ROW Feature_="MainFeature" Component_="message_SymbolsOutput"/>
+    <ROW Feature_="AiAppXAssets" Component_="logoG.scale100.png"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
+    <ROW Name="logoG.exe" SourcePath="..\..\..\проекты git\NetShare-master\NetShare\Assets\logoG.ico" Index="0"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiInstExSeqComponent">
+    <ROW Action="AI_DOWNGRADE" Condition="AI_NEWERPRODUCTFOUND AND (UILevel &lt;&gt; 5)" Sequence="210"/>
+    <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="749"/>
+    <ROW Action="AI_STORE_LOCATION" Condition="(Not Installed) OR REINSTALL" Sequence="1501"/>
+    <ROW Action="AI_PREPARE_UPGRADE" Condition="AI_UPGRADE=&quot;No&quot; AND (Not Installed)" Sequence="1399"/>
+    <ROW Action="AI_ResolveKnownFolders" Sequence="52"/>
+    <ROW Action="AI_EnableDebugLog" Sequence="51"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">
+    <ROW Action="AI_PRESERVE_INSTALL_TYPE" Sequence="199"/>
+    <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="749"/>
+    <ROW Action="AI_ResolveKnownFolders" Sequence="53"/>
+    <ROW Action="AI_DpiContentScale" Sequence="52"/>
+    <ROW Action="AI_EnableDebugLog" Sequence="51"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiLaunchConditionsComponent">
+    <ROW Condition="((VersionNT &lt;&gt; 501) AND (VersionNT &lt;&gt; 502))" Description="[ProductName] cannot be installed on [WindowsTypeNT5XDisplay]." DescriptionLocId="AI.LaunchCondition.NoNT5X" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="(VersionNT &lt;&gt; 400)" Description="[ProductName] cannot be installed on [WindowsTypeNT40Display]." DescriptionLocId="AI.LaunchCondition.NoNT40" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="(VersionNT &lt;&gt; 500)" Description="[ProductName] cannot be installed on [WindowsTypeNT50Display]." DescriptionLocId="AI.LaunchCondition.NoNT50" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="(VersionNT &lt;&gt; 600)" Description="[ProductName] cannot be installed on [WindowsTypeNT60Display]." DescriptionLocId="AI.LaunchCondition.NoNT60" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="VersionNT" Description="[ProductName] cannot be installed on [WindowsType9XDisplay]." DescriptionLocId="AI.LaunchCondition.No9X" IsPredefined="true" Builds="DefaultBuild"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiRegsComponent">
+    <ROW Registry="Manufacturer" Root="-1" Key="Software\[Manufacturer]" Name="\"/>
+    <ROW Registry="Path" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Path" Value="[APPDIR]" Component_="ProductInformation"/>
+    <ROW Registry="ProductName" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="\"/>
+    <ROW Registry="Software" Root="-1" Key="Software" Name="\"/>
+    <ROW Registry="Version" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Version" Value="[ProductVersion]" Component_="ProductInformation"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
+    <ROW Shortcut="WpfApp1" Directory_="SHORTCUTDIR" Name="WpfApp1" Component_="message_PrimaryOutput" Target="[#WpfApp1.exe]" Hotkey="0" IconIndex="0" ShowCmd="1"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiThemeComponent">
+    <ATTRIBUTE name="UsedTheme" value="classic"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiUpgradeComponent">
+    <ROW UpgradeCode="[|UpgradeCode]" VersionMin="0.0.1" VersionMax="[|ProductVersion]" Attributes="257" ActionProperty="OLDPRODUCTS"/>
+    <ROW UpgradeCode="[|UpgradeCode]" VersionMin="[|ProductVersion]" Attributes="2" ActionProperty="AI_NEWERPRODUCTFOUND"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.VsProjectComponent">
+    <ROW ProjectId="{1c8a1d63-bbd0-4c51-919e-7db9c334c700}" ProjectName="message" OutputGroup="PrimaryOutput" OutputFile="WpfApp1.exe" OutputFileShortcut="WpfApp1"/>
+    <ROW ProjectId="{1c8a1d63-bbd0-4c51-919e-7db9c334c700}" ProjectName="message" OutputGroup="PrimaryOutput" OutputFile="WpfApp1.exe.config"/>
+    <ROW ProjectId="{1c8a1d63-bbd0-4c51-919e-7db9c334c700}" ProjectName="message" OutputGroup="References" OutputFile="EntityFramework.dll"/>
+    <ROW ProjectId="{1c8a1d63-bbd0-4c51-919e-7db9c334c700}" ProjectName="message" OutputGroup="References" OutputFile="EntityFramework.SqlServer.dll"/>
+    <ROW ProjectId="{1c8a1d63-bbd0-4c51-919e-7db9c334c700}" ProjectName="message" OutputGroup="References" OutputFile="MaterialDesignColors.dll"/>
+    <ROW ProjectId="{1c8a1d63-bbd0-4c51-919e-7db9c334c700}" ProjectName="message" OutputGroup="References" OutputFile="MaterialDesignThemes.Wpf.dll"/>
+    <ROW ProjectId="{1c8a1d63-bbd0-4c51-919e-7db9c334c700}" ProjectName="message" OutputGroup="References" OutputFile="Microsoft.Xaml.Behaviors.dll"/>
+    <ROW ProjectId="{1c8a1d63-bbd0-4c51-919e-7db9c334c700}" ProjectName="message" OutputGroup="References" OutputFile="System.CodeDom.dll"/>
+    <ROW ProjectId="{1c8a1d63-bbd0-4c51-919e-7db9c334c700}" ProjectName="message" OutputGroup="SymbolsOutput" OutputFile="WpfApp1.pdb"/>
+  </COMPONENT>
+</DOCUMENT>
