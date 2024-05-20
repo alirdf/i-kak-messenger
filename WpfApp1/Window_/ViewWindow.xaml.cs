@@ -38,10 +38,12 @@ namespace WpfApp1.Window_
 
             }
         }  // Выбранная беседа
+
         public ViewWindow(User user)
         {
             InitializeComponent();
             _user = user;
+            txtUserName.Text = _user.Username;
 
 
             IsVisibleChanged += ViewWindow_IsVisibleChanged;
@@ -72,6 +74,7 @@ namespace WpfApp1.Window_
                 RefreshData();
             }
         }// Обработка нажатия клавиши F5 -----------------------------------------------------------------------------------------------------
+       
         public void RefreshData()
         {
             _context.ChangeTracker.Entries().ToList().ForEach(p => p.Reload());

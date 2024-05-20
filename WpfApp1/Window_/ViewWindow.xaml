@@ -27,6 +27,7 @@
                 </Grid.RowDefinitions>
 
                 <StackPanel Grid.Row="0" VerticalAlignment="Top" HorizontalAlignment="Left" Orientation="Horizontal">
+                    <TextBlock x:Name="txtUserName" Margin="5" VerticalAlignment="Center" />
                     <materialDesign:PopupBox Background="{DynamicResource Transparent}"  Foreground="#8bc34a" Margin="5">
                         <StackPanel>
                             <Button Content="_Профиль" Click="ProfileMenuItem_Click" />
