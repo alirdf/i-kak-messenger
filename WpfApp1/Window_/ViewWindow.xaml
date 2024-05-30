@@ -96,7 +96,13 @@
 
                         <TextBox x:Name="tbMessage" Grid.Column="1" Margin="5" />
                         <Button Grid.Column="3" Content="Отправить" Click="SendMessage" Foreground="{DynamicResource MaterialDesignPaper}" Margin="5" Style="{StaticResource MaterialDesignRaisedButton}" />
-                        <Button Grid.Column="2" Content="🖼️" x:Name="btSendfile" Foreground="{DynamicResource MaterialDesignPaper}" Margin="5" Style="{StaticResource MaterialDesignRaisedButton}" Click="btSendfile_Click" />
+                        <Button Padding="5" Grid.Column="2"  x:Name="btSendfile" Foreground="{DynamicResource MaterialDesignPaper}" Margin="5" Style="{StaticResource MaterialDesignRaisedButton}" Click="btSendfile_Click">
+                            <Button.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image  RenderOptions.BitmapScalingMode="HighQuality" Source="/Image_/clip.png" Width="20" Height="20" Margin="1" />
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>   
                         <Button Background="{DynamicResource Transparent}"  Foreground="#8bc34a" Grid.Column="0" Content="➕" x:Name="btAddConversation" Click="btAddConversation_Click" Padding="3" Margin="5" Style="{StaticResource MaterialDesignRaisedButton}" />
                     </Grid>
                 </Grid>

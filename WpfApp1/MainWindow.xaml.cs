@@ -32,7 +32,8 @@ namespace WpfApp1
         {
             using (var _context = new DB_.i_kak_message_ver4Entities())
             {
-                var user = _context.Users.FirstOrDefault(x => x.Username == tbAutoLog.Text && x.Password == tbAutoPass.Password);
+                var user = _context.Users.FirstOrDefault
+                    (x => x.Username == tbAutoLog.Text && x.Password == tbAutoPass.Password);
                 if (user != null)
                 {
                     Window_.ViewWindow a = new Window_.ViewWindow(user);

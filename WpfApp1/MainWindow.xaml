@@ -14,7 +14,7 @@
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto">
     <Grid>
         <materialDesign:Card Padding="10">
-            <TabControl>
+            <TabControl >
                 <TabItem Header="Вход">
                     <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
                         <StackPanel>
