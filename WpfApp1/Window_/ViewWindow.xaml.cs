@@ -35,6 +35,8 @@ namespace WpfApp1.Window_
             {
                 _selectedConversation = value;
                 LoadMessages(_selectedConversation.ConversationID);
+                LoadNotifications();
+                notificationsDataGrid.CellEditEnding += NotificationDataGrid_CellEditEnding;
 
             }
         }  // Выбранная беседа
@@ -67,6 +69,15 @@ namespace WpfApp1.Window_
 
 
         }// Конструктор программы -----------------------------------------------------------------------------------------------------------
+        private void ViewWindow_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (IsVisible)
+            {
+                RefreshMessages();
+                RefreshData();
+
+            }
+        }
         private void ViewWindow_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.F5)
@@ -95,13 +106,7 @@ namespace WpfApp1.Window_
 
 
         } // Обновление данных ---------------------------------------------------------------------------------------------------------------
-        private void ViewWindow_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            if (IsVisible)
-            {
-                RefreshData();
-            }
-        } // Обработка изменения видимости окна ---------------------------------------------------------------------------------------------
+         // Обработка изменения видимости окна ---------------------------------------------------------------------------------------------
         private void btAddNote_Click(object sender, RoutedEventArgs e)
         {
             Window_.AddNote addNote = new Window_.AddNote(user: _user);
@@ -142,6 +147,13 @@ namespace WpfApp1.Window_
                 .ToList();
             livi.ItemsSource = messages;
         }// Загрузка сообщений ---------------------------------------------------------------------------------------------------------------
+        private void RefreshMessages()
+        {
+            if (_selectedConversation != null)
+            {
+                LoadMessages(_selectedConversation.ConversationID);
+            }
+        }
         private void SendMessage(object sender, RoutedEventArgs e)
         {
             try
@@ -184,12 +196,19 @@ namespace WpfApp1.Window_
 
                 _context.SaveChanges();
 
-                // Обновить список сообщений
-                LoadMessages(SelectedConversation.ConversationID);
+                    // Обновить список уведомлений
+                    LoadNotifications();
+
+                    // Обновить список сообщений
+                    LoadMessages(SelectedConversation.ConversationID);
 
                 // Очистить текстовое поле для ввода сообщения
                 tbMessage.Clear();
-            }
+                    // Обновить список уведомлений
+                    LoadNotifications();
+
+                    
+                }
 
             }
             catch { MessageBox.Show("Не удалось отправить сообщение"); }
@@ -602,6 +621,23 @@ namespace WpfApp1.Window_
                 }
             }
         }
+        private void LoadNotifications()
+        {
+            var notifications = _context.Notifications
+                .Where(n => n.UserID == _user.UserID)
+                .OrderByDescending(n => n.CreatedDate)
+                .ToList();
+            notificationsDataGrid.ItemsSource = notifications;
+        }
 
+        private void NotificationDataGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            var notification = e.Row.Item as Notification;
+            if (notification != null)
+            {
+                _context.Entry(notification).State = EntityState.Modified;
+                _context.SaveChanges();
+            }
+        }
     }
 }

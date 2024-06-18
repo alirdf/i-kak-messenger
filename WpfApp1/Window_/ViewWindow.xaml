@@ -137,6 +137,7 @@
                             </StackPanel>
                         </Grid>
                     </TabItem>
+                    
                     <TabItem Header="Заметки">
                         <Grid>
                             <Grid.RowDefinitions>
@@ -157,6 +158,16 @@
                                 <Button Background="{DynamicResource Transparent}"  Foreground="#8bc34a" x:Name="SaveNotesButton" Click="SaveNotesButton_Click" Content="✔️" Margin="5" Padding="1" FontSize="20" FontFamily="Arial Black" Style="{StaticResource MaterialDesignRaisedButton}" />
                             </StackPanel>
                         </Grid>
+                    </TabItem>
+                    <TabItem Header="Уведомления">
+                        <DataGrid x:Name="notificationsDataGrid" AutoGenerateColumns="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Текст" Binding="{Binding NotificationText}" />
+                                <DataGridTextColumn Header="Тип" Binding="{Binding NotificationType}" />
+                                <DataGridCheckBoxColumn Header="Прочитано" Binding="{Binding IsRead}" />
+                                <DataGridTextColumn Header="Дата" Binding="{Binding CreatedDate, StringFormat='{}{0:dd.MM.yyyy HH:mm}'}" />
+                            </DataGrid.Columns>
+                        </DataGrid>
                     </TabItem>
                 </TabControl>
             </materialDesign:Card>
